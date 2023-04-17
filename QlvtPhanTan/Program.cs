@@ -13,24 +13,22 @@ namespace QlvtPhanTan
         public static SqlConnection connect = new SqlConnection();
 
         public static string connectStr;
-        
-
+      
         public static SqlDataAdapter da;
         public static SqlDataReader myReader;
         public static string servername = "DESKTOP-JNU1A1J";
-        public static string servername1 = "DESKTOP-JNU1A1J\\MSSQLSERVER01";
-        public static string servername2 = "DESKTOP-JNU1A1J\\MSSQLSERVER02";
-        public static string username;
-        public static string password;
-        public static string passworDN;
-
-
         public static string database = "QLVT_DATHANG";
-        public static string mLogin;
-        public static string mLoginDN;
-        public static string mGroup;
-        public static string mHoten;
-        public static int mChiNhanh = 0;
+        public static string loginName;
+        public static string userName;
+        public static string password;
+
+        public static string role;
+        public static string hoTen;
+        public static int chiNhanh; 
+        
+        
+       
+        
         public static string connectStrPublisher = "Data Source=" + Program.servername + ";Initial Catalog=" + Program.database + ";Integrated Security=True";
 
         public static BindingSource bdsDspm = new BindingSource(); 
@@ -45,7 +43,7 @@ namespace QlvtPhanTan
             try
             {
                 Program.connectStr = "Data Source=" + Program.servername + ";Initial Catalog=" + Program.database + ";User ID=" +
-                      Program.mLogin + ";password=" + Program.password;
+                      Program.loginName + ";password=" + Program.password;
                 Program.connect.ConnectionString = Program.connectStr;
                 Program.connect.Open();
                 return 1;

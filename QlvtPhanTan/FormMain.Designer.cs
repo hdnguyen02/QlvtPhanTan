@@ -38,16 +38,13 @@ namespace QlvtPhanTan
             this.btnTaoTaiKhoan = new DevExpress.XtraBars.BarButtonItem();
             this.btnDangXuat = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.btnNhapXuatNV = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageNhapXuat = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.toolStripStatusLabelMSNV = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelTen = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelRole = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.ribbonPageDanhMuc = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageNghiepVu = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageBaoCao = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -104,18 +101,38 @@ namespace QlvtPhanTan
             this.ribbonControl1.SearchEditItem,
             this.btnDangNhap,
             this.btnTaoTaiKhoan,
-            this.btnDangXuat});
+            this.btnDangXuat,
+            this.btnNhapXuatNV});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ribbonControl1.MaxItemId = 4;
+            this.ribbonControl1.MaxItemId = 5;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 550;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
-            this.ribbonPageDanhMuc,
-            this.ribbonPageNghiepVu,
-            this.ribbonPageBaoCao});
+            this.ribbonPageNhapXuat});
             this.ribbonControl1.Size = new System.Drawing.Size(1353, 193);
+            // 
+            // btnNhapXuatNV
+            // 
+            this.btnNhapXuatNV.Caption = "Nhân viên";
+            this.btnNhapXuatNV.Id = 4;
+            this.btnNhapXuatNV.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNhapXuatNV.ImageOptions.SvgImage")));
+            this.btnNhapXuatNV.Name = "btnNhapXuatNV";
+            this.btnNhapXuatNV.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnNhapXuatNV_ItemClick);
+            // 
+            // ribbonPageNhapXuat
+            // 
+            this.ribbonPageNhapXuat.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup2});
+            this.ribbonPageNhapXuat.Name = "ribbonPageNhapXuat";
+            this.ribbonPageNhapXuat.Text = "Nhập xuất";
+            // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnNhapXuatNV);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "ribbonPageGroup2";
             // 
             // toolStripStatusLabelMSNV
             // 
@@ -151,45 +168,6 @@ namespace QlvtPhanTan
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "statusStrip";
             // 
-            // ribbonPageDanhMuc
-            // 
-            this.ribbonPageDanhMuc.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup2});
-            this.ribbonPageDanhMuc.Name = "ribbonPageDanhMuc";
-            this.ribbonPageDanhMuc.Text = "Danh mục";
-            this.ribbonPageDanhMuc.Visible = false;
-            // 
-            // ribbonPageGroup2
-            // 
-            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            this.ribbonPageGroup2.Text = "ribbonPageGroup2";
-            // 
-            // ribbonPageNghiepVu
-            // 
-            this.ribbonPageNghiepVu.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup3});
-            this.ribbonPageNghiepVu.Name = "ribbonPageNghiepVu";
-            this.ribbonPageNghiepVu.Text = "nghiệp vụ";
-            this.ribbonPageNghiepVu.Visible = false;
-            // 
-            // ribbonPageGroup3
-            // 
-            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
-            this.ribbonPageGroup3.Text = "ribbonPageGroup3";
-            // 
-            // ribbonPageBaoCao
-            // 
-            this.ribbonPageBaoCao.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup4});
-            this.ribbonPageBaoCao.Name = "ribbonPageBaoCao";
-            this.ribbonPageBaoCao.Text = "Báo cáo";
-            this.ribbonPageBaoCao.Visible = false;
-            // 
-            // ribbonPageGroup4
-            // 
-            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
-            this.ribbonPageGroup4.Text = "ribbonPageGroup4";
-            // 
             // FormMain
             // 
             this.Appearance.Options.UseFont = true;
@@ -204,6 +182,7 @@ namespace QlvtPhanTan
             this.Name = "FormMain";
             this.Ribbon = this.ribbonControl1;
             this.Text = "Quản lý vật tư";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
@@ -226,12 +205,9 @@ namespace QlvtPhanTan
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelTen;
         public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelRole;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPageDanhMuc;
+        private DevExpress.XtraBars.BarButtonItem btnNhapXuatNV;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPageNhapXuat;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPageNghiepVu;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPageBaoCao;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
     }
 }
 

@@ -13,6 +13,21 @@ namespace QlvtPhanTan
             InitializeComponent();
         }
 
+        public void HienThiKhiDangNhap()
+        {
+            this.toolStripStatusLabelMSNV.Text = "Mã Nhân viên: " + Program.userName;
+            this.toolStripStatusLabelTen.Text = "Họ tên: " + Program.hoTen;
+            this.toolStripStatusLabelRole.Text = "Nhóm: " + Program.role;
+            this.ribbonPageNhapXuat.Visible = true; 
+        }
+
+        public void DangXuat()
+        {
+
+        }
+
+
+
         private Form CheckExists(Type ftype)
         {
             foreach (Form f in this.MdiChildren)
@@ -59,11 +74,27 @@ namespace QlvtPhanTan
 
         private void btnDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            Program.loginName = "";
+            Program.password = "";
+            // ẩn đi các giao diện. 
+            this.DangXuat();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnNhapXuatNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormNhanVien));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormNhanVien f = new FormNhanVien();
+                f.MdiParent = this;
+                f.Show();
+            }
 
         }
     }

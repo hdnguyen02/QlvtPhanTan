@@ -74,7 +74,7 @@ namespace QlvtPhanTan
                 MessageBox.Show("Login name và mật khẩu không được bỏ trống","", MessageBoxButtons.OK);
                 return; 
             }
-            Program.mLogin = this.textEditTenDangNhap.Text.Trim();
+            Program.loginName = this.textEditTenDangNhap.Text.Trim();
             Program.password = this.textEditMatKhau.Text.Trim();
 
            
@@ -83,33 +83,34 @@ namespace QlvtPhanTan
 
             // đoạn code phía trên dùng để kết nối về server.
 
-            Program.mChiNhanh = comboBoxChiNhanh.SelectedIndex;
-            Program.mLoginDN = Program.mLogin; 
-            Program.passworDN = Program.password; 
+            Program.chiNhanh = comboBoxChiNhanh.SelectedIndex;
+/*            Program.mLoginDN = Program.mLogin; 
+            Program.passworDN = Program.password; */
 
 
             // lấy ra mã nhân viên, họ tên và nhóm 
-            string strLenh = "EXEC SP_DANGNHAP '" + Program.mLogin + "'";
+            string strLenh = "EXEC SP_DANGNHAP '" + Program.loginName + "'";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
 
             if (Program.myReader == null) return;
             Program.myReader.Read();
 
-            Program.username = Program.myReader.GetString(0);
-            if (Convert.IsDBNull(Program.username))
+            Program.userName = Program.myReader.GetString(0);
+            if (Convert.IsDBNull(Program.userName))
             {
                 MessageBox.Show("Tài khoản này không có quyền truy cập \n Hãy thử tài khoản khác", "Thông Báo", MessageBoxButtons.OK);
             }
 
-            Program.mHoten = Program.myReader.GetString(1);
-            Program.mGroup = Program.myReader.GetString(2);
+            Program.hoTen= Program.myReader.GetString(1);
+            Program.role = Program.myReader.GetString(2);
             Program.myReader.Close();
             Program.connect.Close();
 
-            Program.formMain.toolStripStatusLabelMSNV.Text = "Mã Nhân viên: " + Program.username;
-            Program.formMain.toolStripStatusLabelTen.Text = "Họ tên: " + Program.mHoten;
+            // cho truy cập vào. 
 
-            Program.formMain.toolStripStatusLabelRole.Text = "Nhóm: " + Program.mGroup;
+           
+
+            Program.formMain.HienThiKhiDangNhap(); 
 
 
 
