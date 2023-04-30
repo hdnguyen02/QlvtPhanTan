@@ -18,9 +18,16 @@ namespace QlvtPhanTan
         public static SqlDataReader myReader;
         public static string servername = "DESKTOP-JNU1A1J";
         public static string database = "QLVT_DATHANG";
-        public static string loginName;
+        public static string loginName;   // khoi tao gia tri 
         public static string userName;
         public static string password;
+
+        public static string loginNameType;  // login do người dùng nhập vào.
+        public static string passwordType; // password do ngươi dùng nhập vào. 
+
+        public static string remoteLogin = "HTKN";
+        public static string remotePassword = "123456"; 
+
 
         public static string role;
         public static string hoTen;
@@ -119,6 +126,9 @@ namespace QlvtPhanTan
                     ctl.Enabled = Active;
         }
 
+        // show lỗi 
+      
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -134,5 +144,6 @@ namespace QlvtPhanTan
 
             Application.Run(formMain);
         }
+
     }
 }

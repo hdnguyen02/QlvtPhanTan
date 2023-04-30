@@ -61,7 +61,7 @@ namespace QlvtPhanTan
         private void FormDangNhap_Load(object sender, EventArgs e)
         {
             if (this.KetNoiPublisher() == 0) return;
-            layDspm("SELECT * FROM V_DS_PHANMANH");
+            layDspm("SELECT TOP 2 * FROM V_DS_PHANMANH");
             comboBoxChiNhanh.SelectedIndex = 1;
             comboBoxChiNhanh.SelectedIndex = 0;
         }
@@ -74,6 +74,7 @@ namespace QlvtPhanTan
                 MessageBox.Show("Login name và mật khẩu không được bỏ trống","", MessageBoxButtons.OK);
                 return; 
             }
+
             Program.loginName = this.textEditTenDangNhap.Text.Trim();
             Program.password = this.textEditMatKhau.Text.Trim();
 
@@ -84,10 +85,10 @@ namespace QlvtPhanTan
             // đoạn code phía trên dùng để kết nối về server.
 
             Program.chiNhanh = comboBoxChiNhanh.SelectedIndex;
-/*            Program.mLoginDN = Program.mLogin; 
-            Program.passworDN = Program.password; */
-
-
+          
+            // lưu lại mật khẩu và password của user lúc đăng nhập. 
+            Program.loginNameType = Program.loginName;
+            Program.passwordType = Program.password; 
             // lấy ra mã nhân viên, họ tên và nhóm 
             string strLenh = "EXEC SP_DANGNHAP '" + Program.loginName + "'";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
