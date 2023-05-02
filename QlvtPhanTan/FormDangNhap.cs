@@ -117,10 +117,7 @@ namespace QlvtPhanTan
 
         }
 
-        private void groupControlThongTinDangNhap_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+      
 
 
         // SelectedIndexChanged: sự kiện xảy ra khi thay đổi giá trị. 

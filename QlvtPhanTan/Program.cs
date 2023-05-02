@@ -16,7 +16,7 @@ namespace QlvtPhanTan
       
         public static SqlDataAdapter da;
         public static SqlDataReader myReader;
-        public static string servername = "DESKTOP-JNU1A1J";
+        public static string servername;
         public static string database = "QLVT_DATHANG";
         public static string loginName;   // khoi tao gia tri 
         public static string userName;
@@ -137,7 +137,7 @@ namespace QlvtPhanTan
 
         
         static void Main()
-        {
+       {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             formMain = new FormMain(); 

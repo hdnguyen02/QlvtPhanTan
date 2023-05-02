@@ -38,12 +38,9 @@ namespace QlvtPhanTan
             this.textEditMatKhau = new DevExpress.XtraEditors.TextEdit();
             this.btnDangNhap = new DevExpress.XtraEditors.SimpleButton();
             this.btnThoat = new DevExpress.XtraEditors.SimpleButton();
-            this.groupControlThongTinDangNhap = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditTenDangNhap.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditMatKhau.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControlThongTinDangNhap)).BeginInit();
-            this.groupControlThongTinDangNhap.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -57,26 +54,28 @@ namespace QlvtPhanTan
             // 
             // labelControlChiNhanh
             // 
-            this.labelControlChiNhanh.Location = new System.Drawing.Point(181, 65);
+            this.labelControlChiNhanh.Appearance.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlChiNhanh.Appearance.Options.UseFont = true;
+            this.labelControlChiNhanh.Location = new System.Drawing.Point(35, 29);
             this.labelControlChiNhanh.Margin = new System.Windows.Forms.Padding(4);
             this.labelControlChiNhanh.Name = "labelControlChiNhanh";
-            this.labelControlChiNhanh.Size = new System.Drawing.Size(57, 16);
+            this.labelControlChiNhanh.Size = new System.Drawing.Size(67, 19);
             this.labelControlChiNhanh.TabIndex = 0;
             this.labelControlChiNhanh.Text = "Chi nhánh";
             // 
             // comboBoxChiNhanh
             // 
             this.comboBoxChiNhanh.FormattingEnabled = true;
-            this.comboBoxChiNhanh.Location = new System.Drawing.Point(181, 89);
+            this.comboBoxChiNhanh.Location = new System.Drawing.Point(50, 65);
             this.comboBoxChiNhanh.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxChiNhanh.Name = "comboBoxChiNhanh";
-            this.comboBoxChiNhanh.Size = new System.Drawing.Size(355, 24);
+            this.comboBoxChiNhanh.Size = new System.Drawing.Size(253, 28);
             this.comboBoxChiNhanh.TabIndex = 1;
             this.comboBoxChiNhanh.SelectedIndexChanged += new System.EventHandler(this.comboBoxChiNhanh_SelectedIndexChanged);
             // 
             // labelControlTenDangNhap
             // 
-            this.labelControlTenDangNhap.Location = new System.Drawing.Point(181, 121);
+            this.labelControlTenDangNhap.Location = new System.Drawing.Point(33, 115);
             this.labelControlTenDangNhap.Margin = new System.Windows.Forms.Padding(4);
             this.labelControlTenDangNhap.Name = "labelControlTenDangNhap";
             this.labelControlTenDangNhap.Size = new System.Drawing.Size(59, 17);
@@ -86,7 +85,8 @@ namespace QlvtPhanTan
             // 
             // textEditTenDangNhap
             // 
-            this.textEditTenDangNhap.Location = new System.Drawing.Point(181, 146);
+            this.textEditTenDangNhap.EditValue = "";
+            this.textEditTenDangNhap.Location = new System.Drawing.Point(33, 140);
             this.textEditTenDangNhap.Margin = new System.Windows.Forms.Padding(4);
             this.textEditTenDangNhap.Name = "textEditTenDangNhap";
             this.textEditTenDangNhap.Size = new System.Drawing.Size(355, 22);
@@ -95,7 +95,7 @@ namespace QlvtPhanTan
             // labelControlMatKhau
             // 
             this.labelControlMatKhau.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControlMatKhau.Location = new System.Drawing.Point(181, 176);
+            this.labelControlMatKhau.Location = new System.Drawing.Point(33, 182);
             this.labelControlMatKhau.Margin = new System.Windows.Forms.Padding(4);
             this.labelControlMatKhau.Name = "labelControlMatKhau";
             this.labelControlMatKhau.Size = new System.Drawing.Size(84, 21);
@@ -104,7 +104,7 @@ namespace QlvtPhanTan
             // 
             // textEditMatKhau
             // 
-            this.textEditMatKhau.Location = new System.Drawing.Point(181, 204);
+            this.textEditMatKhau.Location = new System.Drawing.Point(33, 211);
             this.textEditMatKhau.Margin = new System.Windows.Forms.Padding(4);
             this.textEditMatKhau.Name = "textEditMatKhau";
             this.textEditMatKhau.Properties.PasswordChar = '*';
@@ -113,7 +113,7 @@ namespace QlvtPhanTan
             // 
             // btnDangNhap
             // 
-            this.btnDangNhap.Location = new System.Drawing.Point(181, 264);
+            this.btnDangNhap.Location = new System.Drawing.Point(33, 280);
             this.btnDangNhap.Margin = new System.Windows.Forms.Padding(4);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(134, 36);
@@ -123,30 +123,12 @@ namespace QlvtPhanTan
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(402, 264);
+            this.btnThoat.Location = new System.Drawing.Point(254, 280);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(134, 36);
             this.btnThoat.TabIndex = 7;
             this.btnThoat.Text = "Thoát";
-            // 
-            // groupControlThongTinDangNhap
-            // 
-            this.groupControlThongTinDangNhap.Controls.Add(this.btnThoat);
-            this.groupControlThongTinDangNhap.Controls.Add(this.btnDangNhap);
-            this.groupControlThongTinDangNhap.Controls.Add(this.textEditMatKhau);
-            this.groupControlThongTinDangNhap.Controls.Add(this.labelControlMatKhau);
-            this.groupControlThongTinDangNhap.Controls.Add(this.textEditTenDangNhap);
-            this.groupControlThongTinDangNhap.Controls.Add(this.labelControlTenDangNhap);
-            this.groupControlThongTinDangNhap.Controls.Add(this.comboBoxChiNhanh);
-            this.groupControlThongTinDangNhap.Controls.Add(this.labelControlChiNhanh);
-            this.groupControlThongTinDangNhap.Location = new System.Drawing.Point(13, 13);
-            this.groupControlThongTinDangNhap.Margin = new System.Windows.Forms.Padding(4);
-            this.groupControlThongTinDangNhap.Name = "groupControlThongTinDangNhap";
-            this.groupControlThongTinDangNhap.Size = new System.Drawing.Size(695, 417);
-            this.groupControlThongTinDangNhap.TabIndex = 0;
-            this.groupControlThongTinDangNhap.Text = "Thông tin đăng nhập";
-            this.groupControlThongTinDangNhap.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlThongTinDangNhap_Paint);
             // 
             // FormDangNhap
             // 
@@ -154,21 +136,26 @@ namespace QlvtPhanTan
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1689, 654);
+            this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.groupControl1);
-            this.Controls.Add(this.groupControlThongTinDangNhap);
+            this.Controls.Add(this.btnDangNhap);
+            this.Controls.Add(this.textEditMatKhau);
+            this.Controls.Add(this.comboBoxChiNhanh);
+            this.Controls.Add(this.labelControlMatKhau);
+            this.Controls.Add(this.labelControlChiNhanh);
+            this.Controls.Add(this.textEditTenDangNhap);
+            this.Controls.Add(this.labelControlTenDangNhap);
             this.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormDangNhap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormDangNhap";
+            this.Text = "Đăng nhập";
             this.Load += new System.EventHandler(this.FormDangNhap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditTenDangNhap.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditMatKhau.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControlThongTinDangNhap)).EndInit();
-            this.groupControlThongTinDangNhap.ResumeLayout(false);
-            this.groupControlThongTinDangNhap.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -182,6 +169,5 @@ namespace QlvtPhanTan
         private DevExpress.XtraEditors.TextEdit textEditMatKhau;
         private DevExpress.XtraEditors.SimpleButton btnDangNhap;
         private DevExpress.XtraEditors.SimpleButton btnThoat;
-        private DevExpress.XtraEditors.GroupControl groupControlThongTinDangNhap;
     }
 }
