@@ -45,7 +45,7 @@ namespace QlvtPhanTan
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.btnThemNV = new DevExpress.XtraBars.BarButtonItem();
             this.btnXoaNV = new DevExpress.XtraBars.BarButtonItem();
-            this.btnHieuChinhNV = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSuaNV = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhiNV = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoiNV = new DevExpress.XtraBars.BarButtonItem();
             this.btnReloadNV = new DevExpress.XtraBars.BarButtonItem();
@@ -57,6 +57,7 @@ namespace QlvtPhanTan
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.btnHieuChinh = new DevExpress.XtraBars.BarButtonItem();
+            this.btnHieuChinhDDH = new DevExpress.XtraBars.BarButtonItem();
             this.panelControl = new DevExpress.XtraEditors.PanelControl();
             this.cmbChiNhanh = new System.Windows.Forms.ComboBox();
             this.labelCmbChiNhanh = new System.Windows.Forms.Label();
@@ -67,15 +68,6 @@ namespace QlvtPhanTan
             this.tableAdapterManager = new QlvtPhanTan.DSTableAdapters.TableAdapterManager();
             this.nhanVienGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.MANV = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.HO = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.TEN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.SOCMND = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.DIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.NGAYSINH = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.LUONG = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ColMaCN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTrangThaiXoa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelNhapLieuNV = new DevExpress.XtraEditors.PanelControl();
             this.maNVTextBox = new System.Windows.Forms.TextBox();
             this.ngaySinhTextBox = new DevExpress.XtraEditors.DateEdit();
@@ -92,6 +84,15 @@ namespace QlvtPhanTan
             this.bdsPhieuNhap = new System.Windows.Forms.BindingSource(this.components);
             this.phieuNhapTableAdapter = new QlvtPhanTan.DSTableAdapters.PhieuNhapTableAdapter();
             this.phieuXuatTableAdapter = new QlvtPhanTan.DSTableAdapters.PhieuXuatTableAdapter();
+            this.colMANV = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHO = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTEN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSOCMND = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNGAYSINH = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLUONG = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMACN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTrangThaiXoa = new DevExpress.XtraGrid.Columns.GridColumn();
             labelLuong = new System.Windows.Forms.Label();
             mACNLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
@@ -138,7 +139,6 @@ namespace QlvtPhanTan
             mACNLabel.Size = new System.Drawing.Size(94, 17);
             mACNLabel.TabIndex = 6;
             mACNLabel.Text = "Mã chi nhánh:";
-         
             // 
             // hOLabel
             // 
@@ -223,9 +223,10 @@ namespace QlvtPhanTan
             this.btnPhucHoiNV,
             this.btnReloadNV,
             this.btnThoatNV,
-            this.btnHieuChinhNV});
+            this.btnHieuChinhDDH,
+            this.btnSuaNV});
             this.barManager.MainMenu = this.bar2;
-            this.barManager.MaxItemId = 11;
+            this.barManager.MaxItemId = 13;
             this.barManager.StatusBar = this.bar3;
             // 
             // bar1
@@ -239,7 +240,7 @@ namespace QlvtPhanTan
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThemNV, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoaNV, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnHieuChinhNV, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnSuaNV, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhiNV, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoiNV, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnReloadNV, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
@@ -267,13 +268,13 @@ namespace QlvtPhanTan
             this.btnXoaNV.Name = "btnXoaNV";
             this.btnXoaNV.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoaNV_ItemClick);
             // 
-            // btnHieuChinhNV
+            // btnSuaNV
             // 
-            this.btnHieuChinhNV.Caption = "Hiệu Chỉnh";
-            this.btnHieuChinhNV.Id = 10;
-            this.btnHieuChinhNV.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnHieuChinhNV.ImageOptions.SvgImage")));
-            this.btnHieuChinhNV.Name = "btnHieuChinhNV";
-            this.btnHieuChinhNV.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHieuChinhNV_ItemClick);
+            this.btnSuaNV.Caption = "Sữa";
+            this.btnSuaNV.Id = 11;
+            this.btnSuaNV.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSuaNV.ImageOptions.SvgImage")));
+            this.btnSuaNV.Name = "btnSuaNV";
+            this.btnSuaNV.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSuaNV_ItemClick);
             // 
             // btnGhiNV
             // 
@@ -374,6 +375,11 @@ namespace QlvtPhanTan
             this.btnHieuChinh.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnHieuChinh.ImageOptions.SvgImage")));
             this.btnHieuChinh.Name = "btnHieuChinh";
             // 
+            // btnHieuChinhDDH
+            // 
+            this.btnHieuChinhDDH.Id = 12;
+            this.btnHieuChinhDDH.Name = "btnHieuChinhDDH";
+            // 
             // panelControl
             // 
             this.panelControl.Controls.Add(this.cmbChiNhanh);
@@ -382,7 +388,7 @@ namespace QlvtPhanTan
             this.panelControl.Location = new System.Drawing.Point(0, 51);
             this.panelControl.Name = "panelControl";
             this.panelControl.Size = new System.Drawing.Size(1524, 50);
-            this.panelControl.TabIndex = 4; 
+            this.panelControl.TabIndex = 4;
             // 
             // cmbChiNhanh
             // 
@@ -419,11 +425,17 @@ namespace QlvtPhanTan
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.ChiNhanhTableAdapter = null;
+            this.tableAdapterManager.CTDDHTableAdapter = null;
+            this.tableAdapterManager.CTPNTableAdapter = null;
+            this.tableAdapterManager.CTPXTableAdapter = null;
             this.tableAdapterManager.DatHangTableAdapter = null;
+            this.tableAdapterManager.KhoTableAdapter = null;
             this.tableAdapterManager.NhanVienTableAdapter = this.nhanVienTableAdapter;
             this.tableAdapterManager.PhieuNhapTableAdapter = null;
             this.tableAdapterManager.PhieuXuatTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = QlvtPhanTan.DSTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.VattuTableAdapter = null;
             // 
             // nhanVienGridControl
             // 
@@ -442,106 +454,17 @@ namespace QlvtPhanTan
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.MANV,
-            this.HO,
-            this.TEN,
-            this.SOCMND,
-            this.DIACHI,
-            this.NGAYSINH,
-            this.LUONG,
-            this.ColMaCN,
+            this.colMANV,
+            this.colHO,
+            this.colTEN,
+            this.colSOCMND,
+            this.colDIACHI,
+            this.colNGAYSINH,
+            this.colLUONG,
+            this.colMACN,
             this.colTrangThaiXoa});
             this.gridView1.GridControl = this.nhanVienGridControl;
             this.gridView1.Name = "gridView1";
-            // 
-            // MANV
-            // 
-            this.MANV.Caption = "Mã nhân viên";
-            this.MANV.FieldName = "MANV";
-            this.MANV.MinWidth = 25;
-            this.MANV.Name = "MANV";
-            this.MANV.Visible = true;
-            this.MANV.VisibleIndex = 0;
-            this.MANV.Width = 94;
-            // 
-            // HO
-            // 
-            this.HO.Caption = "Họ";
-            this.HO.FieldName = "HO";
-            this.HO.MinWidth = 25;
-            this.HO.Name = "HO";
-            this.HO.Visible = true;
-            this.HO.VisibleIndex = 1;
-            this.HO.Width = 94;
-            // 
-            // TEN
-            // 
-            this.TEN.Caption = "Tên";
-            this.TEN.FieldName = "TEN";
-            this.TEN.MinWidth = 25;
-            this.TEN.Name = "TEN";
-            this.TEN.Visible = true;
-            this.TEN.VisibleIndex = 2;
-            this.TEN.Width = 94;
-            // 
-            // SOCMND
-            // 
-            this.SOCMND.Caption = "Số CMND";
-            this.SOCMND.FieldName = "SOCMND";
-            this.SOCMND.MinWidth = 25;
-            this.SOCMND.Name = "SOCMND";
-            this.SOCMND.Visible = true;
-            this.SOCMND.VisibleIndex = 3;
-            this.SOCMND.Width = 94;
-            // 
-            // DIACHI
-            // 
-            this.DIACHI.Caption = "Địa chỉ";
-            this.DIACHI.FieldName = "DIACHI";
-            this.DIACHI.MinWidth = 25;
-            this.DIACHI.Name = "DIACHI";
-            this.DIACHI.Visible = true;
-            this.DIACHI.VisibleIndex = 4;
-            this.DIACHI.Width = 94;
-            // 
-            // NGAYSINH
-            // 
-            this.NGAYSINH.Caption = "Ngày sinh";
-            this.NGAYSINH.FieldName = "NGAYSINH";
-            this.NGAYSINH.MinWidth = 25;
-            this.NGAYSINH.Name = "NGAYSINH";
-            this.NGAYSINH.Visible = true;
-            this.NGAYSINH.VisibleIndex = 5;
-            this.NGAYSINH.Width = 94;
-            // 
-            // LUONG
-            // 
-            this.LUONG.Caption = "Lương";
-            this.LUONG.DisplayFormat.FormatString = "n0";
-            this.LUONG.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.LUONG.FieldName = "LUONG";
-            this.LUONG.MinWidth = 25;
-            this.LUONG.Name = "LUONG";
-            this.LUONG.Visible = true;
-            this.LUONG.VisibleIndex = 6;
-            this.LUONG.Width = 94;
-            // 
-            // ColMaCN
-            // 
-            this.ColMaCN.Caption = "Mã chi nhánh";
-            this.ColMaCN.FieldName = "MACN";
-            this.ColMaCN.MinWidth = 25;
-            this.ColMaCN.Name = "ColMaCN";
-            this.ColMaCN.Visible = true;
-            this.ColMaCN.VisibleIndex = 7;
-            this.ColMaCN.Width = 94;
-            // 
-            // colTrangThaiXoa
-            // 
-            this.colTrangThaiXoa.FieldName = "TrangThaiXoa";
-            this.colTrangThaiXoa.MinWidth = 25;
-            this.colTrangThaiXoa.Name = "colTrangThaiXoa";
-            this.colTrangThaiXoa.Width = 94;
             // 
             // panelNhapLieuNV
             // 
@@ -569,7 +492,6 @@ namespace QlvtPhanTan
             this.panelNhapLieuNV.Name = "panelNhapLieuNV";
             this.panelNhapLieuNV.Size = new System.Drawing.Size(1524, 143);
             this.panelNhapLieuNV.TabIndex = 10;
-           
             // 
             // maNVTextBox
             // 
@@ -592,7 +514,6 @@ namespace QlvtPhanTan
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.ngaySinhTextBox.Size = new System.Drawing.Size(152, 22);
             this.ngaySinhTextBox.TabIndex = 17;
-            
             // 
             // trangThaiXoaCheckEdit
             // 
@@ -659,7 +580,6 @@ namespace QlvtPhanTan
             this.luongTextBox.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.luongTextBox.Size = new System.Drawing.Size(158, 22);
             this.luongTextBox.TabIndex = 3;
-            
             // 
             // bdsPhieuXuat
             // 
@@ -687,6 +607,87 @@ namespace QlvtPhanTan
             // phieuXuatTableAdapter
             // 
             this.phieuXuatTableAdapter.ClearBeforeFill = true;
+            // 
+            // colMANV
+            // 
+            this.colMANV.FieldName = "MANV";
+            this.colMANV.MinWidth = 25;
+            this.colMANV.Name = "colMANV";
+            this.colMANV.Visible = true;
+            this.colMANV.VisibleIndex = 0;
+            this.colMANV.Width = 94;
+            // 
+            // colHO
+            // 
+            this.colHO.FieldName = "HO";
+            this.colHO.MinWidth = 25;
+            this.colHO.Name = "colHO";
+            this.colHO.Visible = true;
+            this.colHO.VisibleIndex = 1;
+            this.colHO.Width = 94;
+            // 
+            // colTEN
+            // 
+            this.colTEN.FieldName = "TEN";
+            this.colTEN.MinWidth = 25;
+            this.colTEN.Name = "colTEN";
+            this.colTEN.Visible = true;
+            this.colTEN.VisibleIndex = 2;
+            this.colTEN.Width = 94;
+            // 
+            // colSOCMND
+            // 
+            this.colSOCMND.FieldName = "SOCMND";
+            this.colSOCMND.MinWidth = 25;
+            this.colSOCMND.Name = "colSOCMND";
+            this.colSOCMND.Visible = true;
+            this.colSOCMND.VisibleIndex = 3;
+            this.colSOCMND.Width = 94;
+            // 
+            // colDIACHI
+            // 
+            this.colDIACHI.FieldName = "DIACHI";
+            this.colDIACHI.MinWidth = 25;
+            this.colDIACHI.Name = "colDIACHI";
+            this.colDIACHI.Visible = true;
+            this.colDIACHI.VisibleIndex = 4;
+            this.colDIACHI.Width = 94;
+            // 
+            // colNGAYSINH
+            // 
+            this.colNGAYSINH.FieldName = "NGAYSINH";
+            this.colNGAYSINH.MinWidth = 25;
+            this.colNGAYSINH.Name = "colNGAYSINH";
+            this.colNGAYSINH.Visible = true;
+            this.colNGAYSINH.VisibleIndex = 5;
+            this.colNGAYSINH.Width = 94;
+            // 
+            // colLUONG
+            // 
+            this.colLUONG.FieldName = "LUONG";
+            this.colLUONG.MinWidth = 25;
+            this.colLUONG.Name = "colLUONG";
+            this.colLUONG.Visible = true;
+            this.colLUONG.VisibleIndex = 6;
+            this.colLUONG.Width = 94;
+            // 
+            // colMACN
+            // 
+            this.colMACN.FieldName = "MACN";
+            this.colMACN.MinWidth = 25;
+            this.colMACN.Name = "colMACN";
+            this.colMACN.Visible = true;
+            this.colMACN.VisibleIndex = 7;
+            this.colMACN.Width = 94;
+            // 
+            // colTrangThaiXoa
+            // 
+            this.colTrangThaiXoa.FieldName = "TrangThaiXoa";
+            this.colTrangThaiXoa.MinWidth = 25;
+            this.colTrangThaiXoa.Name = "colTrangThaiXoa";
+            this.colTrangThaiXoa.Visible = true;
+            this.colTrangThaiXoa.VisibleIndex = 8;
+            this.colTrangThaiXoa.Width = 94;
             // 
             // FormNhanVien
             // 
@@ -754,15 +755,6 @@ namespace QlvtPhanTan
         private DevExpress.XtraGrid.GridControl nhanVienGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.PanelControl panelNhapLieuNV;
-        private DevExpress.XtraGrid.Columns.GridColumn MANV;
-        private DevExpress.XtraGrid.Columns.GridColumn HO;
-        private DevExpress.XtraGrid.Columns.GridColumn TEN;
-        private DevExpress.XtraGrid.Columns.GridColumn SOCMND;
-        private DevExpress.XtraGrid.Columns.GridColumn DIACHI;
-        private DevExpress.XtraGrid.Columns.GridColumn NGAYSINH;
-        private DevExpress.XtraGrid.Columns.GridColumn LUONG;
-        private DevExpress.XtraGrid.Columns.GridColumn ColMaCN;
-        private DevExpress.XtraGrid.Columns.GridColumn colTrangThaiXoa;
         private DevExpress.XtraEditors.TextEdit luongTextBox;
         private System.Windows.Forms.BindingSource bdsDatHang;
         private DSTableAdapters.DatHangTableAdapter datHangTableAdapter;
@@ -784,6 +776,16 @@ namespace QlvtPhanTan
         private DevExpress.XtraEditors.DateEdit ngaySinhTextBox;
         private System.Windows.Forms.TextBox maNVTextBox;
         private DevExpress.XtraBars.BarButtonItem btnThoatNV;
-        private DevExpress.XtraBars.BarButtonItem btnHieuChinhNV;
+        private DevExpress.XtraBars.BarButtonItem btnHieuChinhDDH;
+        private DevExpress.XtraBars.BarButtonItem btnSuaNV;
+        private DevExpress.XtraGrid.Columns.GridColumn colMANV;
+        private DevExpress.XtraGrid.Columns.GridColumn colHO;
+        private DevExpress.XtraGrid.Columns.GridColumn colTEN;
+        private DevExpress.XtraGrid.Columns.GridColumn colSOCMND;
+        private DevExpress.XtraGrid.Columns.GridColumn colDIACHI;
+        private DevExpress.XtraGrid.Columns.GridColumn colNGAYSINH;
+        private DevExpress.XtraGrid.Columns.GridColumn colLUONG;
+        private DevExpress.XtraGrid.Columns.GridColumn colMACN;
+        private DevExpress.XtraGrid.Columns.GridColumn colTrangThaiXoa;
     }
 }

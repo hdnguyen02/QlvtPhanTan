@@ -145,5 +145,17 @@ namespace QlvtPhanTan
                 f.Show();
             }
         }
+
+        private void btnDDH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormDDH));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormDDH f = new FormDDH();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
     }
 }

@@ -118,16 +118,7 @@ namespace QlvtPhanTan
                 return ex.State; 
             }
         }
-        public static void SetEnableOfButton(Form frm, Boolean Active)
-        {
-
-            foreach (Control ctl in frm.Controls)
-                if ((ctl) is Button)
-                    ctl.Enabled = Active;
-        }
-
-        // show lỗi 
-      
+    
 
         /// <summary>
         /// The main entry point for the application.

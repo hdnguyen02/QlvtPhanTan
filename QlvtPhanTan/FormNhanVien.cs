@@ -1,7 +1,7 @@
 ﻿
 using System;
-using System.Collections;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace QlvtPhanTan
@@ -9,10 +9,8 @@ namespace QlvtPhanTan
     public partial class FormNhanVien : DevExpress.XtraEditors.XtraForm
     {
         string maCN = "";
-
-        int viTri = 0; // Lưu lại vị trí phục vụ việt undo. 
-
-
+        int viTri = 0;
+  
         public FormNhanVien()
         {
             InitializeComponent();
@@ -46,7 +44,7 @@ namespace QlvtPhanTan
             if (Program.role == "CONGTY")
             {
                 cmbChiNhanh.Enabled = true; 
-                btnThemNV.Enabled = btnXoaNV.Enabled = btnHieuChinhNV.Enabled = btnGhiNV.Enabled = btnPhucHoiNV.Enabled = false;
+                btnThemNV.Enabled = btnXoaNV.Enabled = btnSuaNV.Enabled = btnGhiNV.Enabled = btnPhucHoiNV.Enabled = false;
             } 
             else 
             {
@@ -58,12 +56,16 @@ namespace QlvtPhanTan
         {
             this.viTri = bdsNhanVien.Position;   
             this.panelNhapLieuNV.Enabled = true; 
+            maNVTextBox.Enabled = true;
             bdsNhanVien.AddNew();
             maCNTextBox.Text = maCN;
             nhanVienGridControl.Enabled = false;  
-            btnThemNV.Enabled = btnXoaNV.Enabled = btnHieuChinhNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = false; 
+            btnThemNV.Enabled = btnXoaNV.Enabled = btnSuaNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = false; 
             btnGhiNV.Enabled = btnPhucHoiNV.Enabled = true;
-            this.trangThaiXoaCheckEdit.Checked = false; 
+            this.trangThaiXoaCheckEdit.Checked = false;
+   
+            
+            
         }
 
         private void nhanVienBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -113,6 +115,34 @@ namespace QlvtPhanTan
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (btnThemNV.Enabled == false) // đang thêm nhân viên
+            {
+              
+                String cauTruyVan =
+                    "DECLARE @result int " +
+                    "EXEC @result = [dbo].[spTraCuuMaNhanVien] '" +
+                     maNVTextBox.Text + "' " + "SELECT 'Value' = @result";
+                SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.connect);
+
+               try
+               {
+                    Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi kiểm tra mã nhân viên\n" + ex.Message, "", MessageBoxButtons.OK);
+                }
+                Program.myReader.Read();
+                int result = int.Parse(Program.myReader.GetValue(0). ToString());
+                Program.myReader.Close();
+                if (result == 1)
+                {
+                    MessageBox.Show("Mã nhân viên đã được sử dụng", "", MessageBoxButtons.OK);
+                    return;  // 
+                }
+
+    
+            }
             try
             {
                 bdsNhanVien.EndEdit();
@@ -128,47 +158,50 @@ namespace QlvtPhanTan
             }
             panelNhapLieuNV.Enabled = false;
             nhanVienGridControl.Enabled = true;
-            btnThemNV.Enabled = btnXoaNV.Enabled = btnHieuChinhNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = true;
-            btnPhucHoiNV.Enabled = btnGhiNV.Enabled = false;
+            btnThemNV.Enabled = btnXoaNV.Enabled = btnSuaNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = true;
+            btnPhucHoiNV.Enabled = btnGhiNV.Enabled = false; 
         }
 
-
+        // viết 1 hàm reload dùng ở 2 nơi 
+        private void reloadBdsNhanvien()
+        {
+            viTri = bdsNhanVien.Position;
+            try
+            {
+                this.nhanVienTableAdapter.Fill(this.DS.NhanVien);
+                bdsNhanVien.Position = viTri;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi reload: " + ex.Message, "", MessageBoxButtons.OK);
+            }
+        }
 
 
         private void btnPhucHoiNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         { 
             bdsNhanVien.CancelEdit();
-            if (btnThemNV.Enabled == false) bdsNhanVien.Position = viTri;
+            if (btnThemNV.Enabled == false)  // đang thêm mới. 
+            {
+                bdsNhanVien.Position = viTri;
+     
+                reloadBdsNhanvien(); 
+            } 
 
             panelNhapLieuNV.Enabled = false;
             nhanVienGridControl.Enabled = true;
            
-            btnThemNV.Enabled = btnXoaNV.Enabled = btnHieuChinhNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = true;
-            btnPhucHoiNV.Enabled = btnGhiNV.Enabled = false; 
+            btnThemNV.Enabled = btnXoaNV.Enabled = btnSuaNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = true;
+            btnPhucHoiNV.Enabled = btnGhiNV.Enabled = false;
+      
         }
 
-        private void btnHieuChinhNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            viTri = bdsNhanVien.Position;
-            panelNhapLieuNV.Enabled = true;
-            nhanVienGridControl.Enabled = false;
-
-            btnThemNV.Enabled = btnXoaNV.Enabled = btnHieuChinhNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = false;
-            btnPhucHoiNV.Enabled = btnGhiNV.Enabled = true; 
-        }
+       
 
         private void btnReloadNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            // tải lại dữ liệu
-            try
-            {
-                this.nhanVienTableAdapter.Fill(this.DS.NhanVien);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Lỗi reload: " + ex.Message, "", MessageBoxButtons.OK);
-                return; 
-            }
+            maNVTextBox.Enabled = true;
+            reloadBdsNhanvien(); 
         }
 
         private void btnXoaNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -212,7 +245,19 @@ namespace QlvtPhanTan
 
         private void btnThoatNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.Close();
+            this.Dispose(); 
+        }
+
+        private void btnSuaNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            maNVTextBox.Enabled = false; 
+            viTri = bdsNhanVien.Position;
+            panelNhapLieuNV.Enabled = true;
+            nhanVienGridControl.Enabled = false;
+   
+
+            btnThemNV.Enabled = btnXoaNV.Enabled = btnSuaNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = false;
+            btnPhucHoiNV.Enabled = btnGhiNV.Enabled = true;
         }
     }
 }
