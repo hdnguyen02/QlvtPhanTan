@@ -93,12 +93,13 @@ namespace QlvtPhanTan
         private void btnThemCTDDH_Click(object sender, EventArgs e)
         {
 
-            /* panelNhapLieuCTDDH.Visible = true;
-             panelNhapLieuDDH.Visible = false; */
-
-            // lấy mã số của thằng hiện tại gán qua 
-            // gán giá trị qua. 
-            maSoDDHCT.Text = masoDDHTextEdit.Text; 
+            if (DDHDaLapPhieuNhap())  // nếu đã lập phiếu nhập rồi thì không chỉnh sữa hay xóa gì cả. 
+            {
+                MessageBox.Show("Không thao tác với đơn đặt hàng đã lập phiếu nhập\n", "", MessageBoxButtons.OK);
+                return;
+            }
+            maSoDDHCT.Text = masoDDHTextEdit.Text;
+            panelNhapLieuCTDDH.Enabled = true; 
      
             bdsCTDDH.AddNew(); 
 
@@ -219,15 +220,15 @@ namespace QlvtPhanTan
 
         private void btnGhiVatTu_Click(object sender, EventArgs e)
         {
-
-
-            Console.WriteLine("vao day"); 
+           
             try
             {
                 bdsCTDDH.EndEdit();
                 bdsCTDDH.ResetCurrentItem();
                 this.CTDDHTableAdapter.Connection.ConnectionString = Program.connectStr;
                 this.CTDDHTableAdapter.Update(this.DS.CTDDH);
+
+                panelNhapLieuCTDDH.Enabled = false; 
             }
             catch (Exception ex)
             {
@@ -275,8 +276,57 @@ namespace QlvtPhanTan
 
         private void suaVT_Click(object sender, EventArgs e)
         {
+            if (DDHDaLapPhieuNhap())  // nếu đã lập phiếu nhập rồi thì không chỉnh sữa hay xóa gì cả. 
+            {
+                MessageBox.Show("Không thao tác với đơn hàng đã lập phiếu nhập\n", "", MessageBoxButtons.OK);
+                return;
+            }
             panelNhapLieuCTDDH.Enabled = true;
-            /*CTDDHDataGridView.Enabled = false; */
+        }
+
+        private bool DDHDaLapPhieuNhap()
+        {
+            if (bdsPN.Count != 0) // đã lập phiếu nhập rồi. 
+            {
+                return true; 
+            }
+            return false; 
+        }
+
+     
+
+        private void btnXoaVT_Click(object sender, EventArgs e)
+        {
+            // xóa đi vật tư đang đứng hiện tại. 
+            // thống nhất như này. trước khi sữa - thêm - xóa 1 cái gì đó trên phiếu nhập 
+            // nếu như đơn hàng này đã lập phiếu nhập. 
+            // viết 1 hàm kiểm tra xem đã lập phiếu nhập chưa 
+            if (DDHDaLapPhieuNhap())  // nếu đã lập phiếu nhập rồi thì không chỉnh sữa hay xóa gì cả. 
+            {
+                MessageBox.Show("Không chỉnh sữa với đơn hàng đã lập phiếu nhập\n", "", MessageBoxButtons.OK);
+                return; 
+            }
+
+            // nếu không ấy thì xóa. 
+            if (MessageBox.Show("Bạn có thực muốn chi tiết đơn đặt hàng này không ?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                try
+                {
+                    bdsCTDDH.RemoveCurrent();
+                    this.CTDDHTableAdapter.Connection.ConnectionString = Program.connectStr;
+                    this.CTDDHTableAdapter.Update(this.DS.CTDDH);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa chi tiết đơn đặt hàng. Bạn hãy xóa lại\n" + ex.Message, "", MessageBoxButtons.OK);
+                    this.CTDDHTableAdapter.Fill(this.DS.CTDDH);
+                   
+                    return;
+                }
+            }
+
+      
+
         }
     }
 }

@@ -50,8 +50,8 @@ namespace QlvtPhanTan
             this.btnXoaDDH = new DevExpress.XtraBars.BarButtonItem();
             this.btnSuaDDH = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhiDDH = new DevExpress.XtraBars.BarButtonItem();
-            this.btnPhucHoiDDH = new DevExpress.XtraBars.BarButtonItem();
             this.btnReloadDDH = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPhucHoiDDH = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoatDDH = new DevExpress.XtraBars.BarButtonItem();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.bar3 = new DevExpress.XtraBars.Bar();
@@ -91,11 +91,11 @@ namespace QlvtPhanTan
             this.bdsVatTu = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnThemCTDDH = new System.Windows.Forms.ToolStripMenuItem();
-            this.xóaVậtTưToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.suaVT = new System.Windows.Forms.ToolStripMenuItem();
             this.btnGhiVatTu = new System.Windows.Forms.ToolStripMenuItem();
             this.phụcHồiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnXoaVT = new System.Windows.Forms.ToolStripMenuItem();
             this.hoTenNVTableAdapter = new QlvtPhanTan.DSTableAdapters.HoTenNVTableAdapter();
             this.khoTableAdapter = new QlvtPhanTan.DSTableAdapters.KhoTableAdapter();
             this.vattuTableAdapter = new QlvtPhanTan.DSTableAdapters.VattuTableAdapter();
@@ -289,8 +289,8 @@ namespace QlvtPhanTan
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoaDDH, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnSuaDDH, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhiDDH, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoiDDH, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnReloadDDH, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoiDDH, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThoatDDH, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar1.Text = "Tools";
             // 
@@ -332,6 +332,14 @@ namespace QlvtPhanTan
             this.btnGhiDDH.Name = "btnGhiDDH";
             this.btnGhiDDH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhiDDH_ItemClick);
             // 
+            // btnReloadDDH
+            // 
+            this.btnReloadDDH.Caption = "Reload";
+            this.btnReloadDDH.Id = 8;
+            this.btnReloadDDH.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnReloadDDH.ImageOptions.SvgImage")));
+            this.btnReloadDDH.Name = "btnReloadDDH";
+            this.btnReloadDDH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReloadDDH_ItemClick);
+            // 
             // btnPhucHoiDDH
             // 
             this.btnPhucHoiDDH.Caption = "Phục hồi";
@@ -340,14 +348,6 @@ namespace QlvtPhanTan
             this.btnPhucHoiDDH.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPhucHoiDDH.ImageOptions.SvgImage")));
             this.btnPhucHoiDDH.Name = "btnPhucHoiDDH";
             this.btnPhucHoiDDH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhucHoiDDH_ItemClick);
-            // 
-            // btnReloadDDH
-            // 
-            this.btnReloadDDH.Caption = "Reload";
-            this.btnReloadDDH.Id = 8;
-            this.btnReloadDDH.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnReloadDDH.ImageOptions.SvgImage")));
-            this.btnReloadDDH.Name = "btnReloadDDH";
-            this.btnReloadDDH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReloadDDH_ItemClick);
             // 
             // btnThoatDDH
             // 
@@ -695,52 +695,53 @@ namespace QlvtPhanTan
             this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnThemCTDDH,
-            this.xóaVậtTưToolStripMenuItem,
             this.suaVT,
             this.btnGhiVatTu,
             this.phụcHồiToolStripMenuItem,
-            this.reloadToolStripMenuItem});
+            this.reloadToolStripMenuItem,
+            this.btnXoaVT});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(158, 148);
+            this.contextMenuStrip.Size = new System.Drawing.Size(211, 176);
             // 
             // btnThemCTDDH
             // 
             this.btnThemCTDDH.Name = "btnThemCTDDH";
-            this.btnThemCTDDH.Size = new System.Drawing.Size(157, 24);
+            this.btnThemCTDDH.Size = new System.Drawing.Size(210, 24);
             this.btnThemCTDDH.Text = "Thêm vật tư";
             this.btnThemCTDDH.Click += new System.EventHandler(this.btnThemCTDDH_Click);
-            // 
-            // xóaVậtTưToolStripMenuItem
-            // 
-            this.xóaVậtTưToolStripMenuItem.Name = "xóaVậtTưToolStripMenuItem";
-            this.xóaVậtTưToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
-            this.xóaVậtTưToolStripMenuItem.Text = "Xóa vật tư";
             // 
             // suaVT
             // 
             this.suaVT.Name = "suaVT";
-            this.suaVT.Size = new System.Drawing.Size(157, 24);
+            this.suaVT.Size = new System.Drawing.Size(210, 24);
             this.suaVT.Text = "Sữa vật tư";
             this.suaVT.Click += new System.EventHandler(this.suaVT_Click);
             // 
             // btnGhiVatTu
             // 
             this.btnGhiVatTu.Name = "btnGhiVatTu";
-            this.btnGhiVatTu.Size = new System.Drawing.Size(157, 24);
+            this.btnGhiVatTu.Size = new System.Drawing.Size(210, 24);
             this.btnGhiVatTu.Text = "Ghi vật tư";
             this.btnGhiVatTu.Click += new System.EventHandler(this.btnGhiVatTu_Click);
             // 
             // phụcHồiToolStripMenuItem
             // 
             this.phụcHồiToolStripMenuItem.Name = "phụcHồiToolStripMenuItem";
-            this.phụcHồiToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.phụcHồiToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.phụcHồiToolStripMenuItem.Text = "Phục hồi";
             // 
             // reloadToolStripMenuItem
             // 
             this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
-            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.reloadToolStripMenuItem.Text = "Reload";
+            // 
+            // btnXoaVT
+            // 
+            this.btnXoaVT.Name = "btnXoaVT";
+            this.btnXoaVT.Size = new System.Drawing.Size(210, 24);
+            this.btnXoaVT.Text = "Xóa vật tư";
+            this.btnXoaVT.Click += new System.EventHandler(this.btnXoaVT_Click);
             // 
             // hoTenNVTableAdapter
             // 
@@ -1014,7 +1015,6 @@ namespace QlvtPhanTan
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.TextEdit maVTTextEdit;
         private System.Windows.Forms.ComboBox cmbVT;
-        private System.Windows.Forms.ToolStripMenuItem xóaVậtTưToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem phụcHồiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reloadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem suaVT;
@@ -1022,5 +1022,6 @@ namespace QlvtPhanTan
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.ToolStripMenuItem btnXoaVT;
     }
 }
