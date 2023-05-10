@@ -41,15 +41,16 @@ namespace QlvtPhanTan
             this.btnNhapXuatNV = new DevExpress.XtraBars.BarButtonItem();
             this.btnNhapXuatVatTu = new DevExpress.XtraBars.BarButtonItem();
             this.btnKho = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDDH = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageNhapXuat = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.toolStripStatusLabelMSNV = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelTen = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelRole = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnDDH = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPN = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -112,10 +113,11 @@ namespace QlvtPhanTan
             this.btnNhapXuatNV,
             this.btnNhapXuatVatTu,
             this.btnKho,
-            this.btnDDH});
+            this.btnDDH,
+            this.btnPN});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ribbonControl1.MaxItemId = 9;
+            this.ribbonControl1.MaxItemId = 10;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 550;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -147,6 +149,14 @@ namespace QlvtPhanTan
             this.btnKho.Name = "btnKho";
             this.btnKho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnKho_ItemClick);
             // 
+            // btnDDH
+            // 
+            this.btnDDH.Caption = "Đơn đặt hàng";
+            this.btnDDH.Id = 8;
+            this.btnDDH.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDDH.ImageOptions.SvgImage")));
+            this.btnDDH.Name = "btnDDH";
+            this.btnDDH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDDH_ItemClick);
+            // 
             // ribbonPageNhapXuat
             // 
             this.ribbonPageNhapXuat.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -162,6 +172,12 @@ namespace QlvtPhanTan
             this.ribbonPageGroup2.ItemLinks.Add(this.btnNhapXuatVatTu, true);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnKho, true);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            // 
+            // ribbonPageGroup3
+            // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnDDH);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnPN);
+            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             // 
             // toolStripStatusLabelMSNV
             // 
@@ -203,18 +219,13 @@ namespace QlvtPhanTan
             this.barButtonItem1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
             this.barButtonItem1.Name = "barButtonItem1";
             // 
-            // ribbonPageGroup3
+            // btnPN
             // 
-            this.ribbonPageGroup3.ItemLinks.Add(this.btnDDH);
-            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
-            // 
-            // btnDDH
-            // 
-            this.btnDDH.Caption = "Đơn đặt hàng";
-            this.btnDDH.Id = 8;
-            this.btnDDH.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDDH.ImageOptions.SvgImage")));
-            this.btnDDH.Name = "btnDDH";
-            this.btnDDH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDDH_ItemClick);
+            this.btnPN.Caption = "Phiếu nhập";
+            this.btnPN.Id = 9;
+            this.btnPN.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPN.ImageOptions.SvgImage")));
+            this.btnPN.Name = "btnPN";
+            this.btnPN.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPN_ItemClick);
             // 
             // FormMain
             // 
@@ -261,6 +272,7 @@ namespace QlvtPhanTan
         private DevExpress.XtraBars.BarButtonItem btnKho;
         private DevExpress.XtraBars.BarButtonItem btnDDH;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
+        private DevExpress.XtraBars.BarButtonItem btnPN;
     }
 }
 

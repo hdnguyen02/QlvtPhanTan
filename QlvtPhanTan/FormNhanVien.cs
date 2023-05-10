@@ -115,7 +115,7 @@ namespace QlvtPhanTan
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (btnThemNV.Enabled == false) // đang thêm nhân viên
+            /*if (btnThemNV.Enabled == false) // đang thêm nhân viên. lúc đó thằng đó cũng thêm nhân viên. 
             {
               
                 String cauTruyVan =
@@ -142,7 +142,7 @@ namespace QlvtPhanTan
                 }
 
     
-            }
+            }*/
             try
             {
                 bdsNhanVien.EndEdit();

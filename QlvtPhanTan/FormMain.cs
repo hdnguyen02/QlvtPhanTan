@@ -54,8 +54,14 @@ namespace QlvtPhanTan
             else
             {
                 FormDangNhap f = new FormDangNhap();
+                // XET MK VA PASSWORK. 
+                f.textEditTenDangNhap.Text = "tt";
+                f.textEditMatKhau.Text = "123456"; 
+
                 f.MdiParent = this;
                 f.Show();
+                f.btnDangNhap_Click(null, null); 
+                
             }
 
         }
@@ -105,7 +111,8 @@ namespace QlvtPhanTan
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-
+            // khi load len cho no dang nhap luon. 
+            
         }
 
         private void btnNhapXuatNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -153,6 +160,18 @@ namespace QlvtPhanTan
             else
             {
                 FormDDH f = new FormDDH();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnPN_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormPN));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormPN f = new FormPN();
                 f.MdiParent = this;
                 f.Show();
             }

@@ -43,6 +43,7 @@ namespace QlvtPhanTan
             da.Fill(dt); // dt: dataTable: chứa table view
             connectPublisher.Close();  
             Program.bdsDspm.DataSource = dt;
+
             // liên kết số liệu với cmb 
             comboBoxChiNhanh.DataSource = Program.bdsDspm; // chứa danh sách dữ liệu liên kết
             comboBoxChiNhanh.DisplayMember = "TENCN";  // tên hiển thị
@@ -67,7 +68,7 @@ namespace QlvtPhanTan
         }
 
         // khi người dùng đăng nhập vào.
-        private void btnDangNhap_Click(object sender, EventArgs e)
+        public void btnDangNhap_Click(object sender, EventArgs e)
         {
             if (this.textEditTenDangNhap.Text.Trim() == "" || this.textEditMatKhau.Text.Trim() == "")
             {

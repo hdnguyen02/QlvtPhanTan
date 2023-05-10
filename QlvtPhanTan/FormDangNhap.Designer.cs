@@ -164,10 +164,10 @@ namespace QlvtPhanTan
         private DevExpress.XtraEditors.LabelControl labelControlChiNhanh;
         private System.Windows.Forms.ComboBox comboBoxChiNhanh;
         private DevExpress.XtraEditors.LabelControl labelControlTenDangNhap;
-        private DevExpress.XtraEditors.TextEdit textEditTenDangNhap;
         private DevExpress.XtraEditors.LabelControl labelControlMatKhau;
-        private DevExpress.XtraEditors.TextEdit textEditMatKhau;
         private DevExpress.XtraEditors.SimpleButton btnDangNhap;
         private DevExpress.XtraEditors.SimpleButton btnThoat;
+        public DevExpress.XtraEditors.TextEdit textEditTenDangNhap;
+        public DevExpress.XtraEditors.TextEdit textEditMatKhau;
     }
 }

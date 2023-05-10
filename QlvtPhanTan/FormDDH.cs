@@ -6,12 +6,12 @@ namespace QlvtPhanTan
 {
     public partial class FormDDH : DevExpress.XtraEditors.XtraForm
     {
-        int viTri; 
+        int viTri;
 
         public FormDDH()
         {
             InitializeComponent();
-            
+
 
         }
 
@@ -36,10 +36,13 @@ namespace QlvtPhanTan
             this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connectStr;
             this.hoTenNVTableAdapter.Fill(this.DS.HoTenNV);
             this.khoTableAdapter.Fill(this.DS.Kho);
-            this.datHangTableAdapter.Fill(this.DS.DatHang);
-            this.CTDDHTableAdapter.Fill(this.DS.CTDDH);
             this.vattuTableAdapter.Fill(this.DS.Vattu);
+            this.datHangTableAdapter.Fill(this.DS.DatHang);
+
+            this.CTDDHTableAdapter.Fill(this.DS.CTDDH);
+
             this.phieuNhapTableAdapter.Fill(this.DS.PhieuNhap);
+
 
             cmbChiNhanh.DataSource = Program.bdsDspm;
             cmbChiNhanh.DisplayMember = "TENCN";
@@ -92,16 +95,16 @@ namespace QlvtPhanTan
 
         private void btnThemCTDDH_Click(object sender, EventArgs e)
         {
+            btnReloadDDH.Enabled = btnThemDDH.Enabled = btnXoaDDH.Enabled = btnSuaDDH.Enabled = false;
+            panelNhapLieuCTDDH.Enabled = true;
 
-            if (DDHDaLapPhieuNhap())  // nếu đã lập phiếu nhập rồi thì không chỉnh sữa hay xóa gì cả. 
-            {
-                MessageBox.Show("Không thao tác với đơn đặt hàng đã lập phiếu nhập\n", "", MessageBoxButtons.OK);
-                return;
-            }
+            bdsCTDDH.AddNew();
             maSoDDHCT.Text = masoDDHTextEdit.Text;
-            panelNhapLieuCTDDH.Enabled = true; 
-     
-            bdsCTDDH.AddNew(); 
+
+            btnThemCTDDH.Enabled = btnXoaVT.Enabled = suaVT.Enabled = false;
+            btnGhiVatTu.Enabled = btnPhucHoiVT.Enabled = true;
+
+
 
         }
 
@@ -119,7 +122,7 @@ namespace QlvtPhanTan
         private void btnPhucHoiDDH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bdsDDH.CancelEdit();
-            if (btnThemDDH.Enabled == false) { 
+            if (btnThemDDH.Enabled == false) {
                 reloadBdsDDH();
             }
             else masoDDHTextEdit.Enabled = true;
@@ -140,11 +143,15 @@ namespace QlvtPhanTan
 
         private void reloadBdsDDH()
         {
-            
+
             try
             {
+                viTri = bdsDDH.Position;
                 this.datHangTableAdapter.Fill(this.DS.DatHang);
-                bdsDDH.Position = viTri; 
+                this.CTDDHTableAdapter.Fill(this.DS.CTDDH);
+                bdsDDH.Position = viTri;
+
+
             }
             catch (Exception ex)
             {
@@ -155,11 +162,11 @@ namespace QlvtPhanTan
 
         private void btnReloadDDH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            reloadBdsDDH(); 
+            reloadBdsDDH();
         }
 
         private void btnGhiDDH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        { 
+        {
             try
             {
                 bdsDDH.EndEdit();
@@ -171,23 +178,22 @@ namespace QlvtPhanTan
             {
                 MessageBox.Show("Lỗi Ghi đơn đặt hàng\n" + ex.Message, "", MessageBoxButtons.OK);
                 this.datHangTableAdapter.Fill(this.DS.DatHang);
-                bdsDDH.Position = viTri; 
+                bdsDDH.Position = viTri;
             }
-            masoDDHTextEdit.Enabled = true; 
+            masoDDHTextEdit.Enabled = true;
             panelNhapLieuDDH.Enabled = false;
             datHangGridControl.Enabled = true;
             btnThemDDH.Enabled = btnXoaDDH.Enabled = btnSuaDDH.Enabled = btnReloadDDH.Enabled = btnThoatDDH.Enabled = true;
             btnPhucHoiDDH.Enabled = btnGhiDDH.Enabled = false;
-         
         }
+
 
         private void btnXoaDDH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             // một ddh được xóa khi chưa có phiếu nhập và chưa tạo phiếu nhập 
             if (bdsPN.Count > 0)
             {
-                // viết 1 hàm tiện ích show ra lỗi đi.  
-                MessageBox.Show("Không thể đơn đặt hàng đã lập phiếu nhập", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể xóa đơn đặt hàng đã lập phiếu nhập", "", MessageBoxButtons.OK);
                 return;
             }
             if (bdsCTDDH.Count > 0)
@@ -195,7 +201,7 @@ namespace QlvtPhanTan
                 MessageBox.Show("Không thể xóa đơn đặt hàng đã lập chi tiết đơn đặt hàng", "", MessageBoxButtons.OK);
                 return;
             }
-          
+
             if (MessageBox.Show("Bạn có thực muốn xóa đơn đặt hàng này không ?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 String maDDHXoa = ((DataRowView)bdsDDH[bdsDDH.Position])["MaSoDDH"].ToString();
@@ -220,7 +226,8 @@ namespace QlvtPhanTan
 
         private void btnGhiVatTu_Click(object sender, EventArgs e)
         {
-           
+
+
             try
             {
                 bdsCTDDH.EndEdit();
@@ -228,14 +235,19 @@ namespace QlvtPhanTan
                 this.CTDDHTableAdapter.Connection.ConnectionString = Program.connectStr;
                 this.CTDDHTableAdapter.Update(this.DS.CTDDH);
 
-                panelNhapLieuCTDDH.Enabled = false; 
+
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi Ghi chi tiết đơn đặt hàng\n" + ex.Message, "", MessageBoxButtons.OK);
                 this.CTDDHTableAdapter.Fill(this.DS.CTDDH);
-  
             }
+
+            panelNhapLieuCTDDH.Enabled = false;
+            btnThemCTDDH.Enabled = btnXoaVT.Enabled = suaVT.Enabled = true;
+            btnGhiVatTu.Enabled = btnPhucHoiVT.Enabled = false;
+            btnReloadDDH.Enabled = btnThemDDH.Enabled = btnXoaDDH.Enabled = btnSuaDDH.Enabled = true;
 
         }
 
@@ -245,11 +257,6 @@ namespace QlvtPhanTan
         }
 
         private void panelNhapLieuCTDDH_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -282,18 +289,22 @@ namespace QlvtPhanTan
                 return;
             }
             panelNhapLieuCTDDH.Enabled = true;
+            btnReloadDDH.Enabled = btnThemDDH.Enabled = btnXoaDDH.Enabled = btnSuaDDH.Enabled = false;
+
+            btnThemCTDDH.Enabled = btnXoaVT.Enabled = suaVT.Enabled = false;
+            btnGhiVatTu.Enabled = btnPhucHoiVT.Enabled = true;
         }
 
         private bool DDHDaLapPhieuNhap()
         {
             if (bdsPN.Count != 0) // đã lập phiếu nhập rồi. 
             {
-                return true; 
+                return true;
             }
-            return false; 
+            return false;
         }
 
-     
+
 
         private void btnXoaVT_Click(object sender, EventArgs e)
         {
@@ -304,11 +315,11 @@ namespace QlvtPhanTan
             if (DDHDaLapPhieuNhap())  // nếu đã lập phiếu nhập rồi thì không chỉnh sữa hay xóa gì cả. 
             {
                 MessageBox.Show("Không chỉnh sữa với đơn hàng đã lập phiếu nhập\n", "", MessageBoxButtons.OK);
-                return; 
+                return;
             }
 
             // nếu không ấy thì xóa. 
-            if (MessageBox.Show("Bạn có thực muốn chi tiết đơn đặt hàng này không ?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show("Bạn có thực muốn xóa chi tiết đơn đặt hàng này không ?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
@@ -320,12 +331,28 @@ namespace QlvtPhanTan
                 {
                     MessageBox.Show("Lỗi xóa chi tiết đơn đặt hàng. Bạn hãy xóa lại\n" + ex.Message, "", MessageBoxButtons.OK);
                     this.CTDDHTableAdapter.Fill(this.DS.CTDDH);
-                   
+
                     return;
                 }
             }
 
-      
+        }  
+
+        private void btnPhucHoiVT_Click(object sender, EventArgs e)
+        {
+            bdsCTDDH.CancelEdit();
+            reloadBdsDDH();
+            panelNhapLieuCTDDH.Enabled = false;
+            CTDDHDataGridView.Enabled = true;
+
+            btnThemCTDDH.Enabled = btnXoaVT.Enabled = suaVT.Enabled = true;
+            btnGhiVatTu.Enabled = btnPhucHoiVT.Enabled = false;
+
+            btnReloadDDH.Enabled = btnThemDDH.Enabled = btnXoaDDH.Enabled = btnSuaDDH.Enabled = true;
+        }
+
+        private void panelControl_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }
