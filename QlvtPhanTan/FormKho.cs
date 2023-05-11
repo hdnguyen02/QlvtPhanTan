@@ -13,6 +13,9 @@ namespace QlvtPhanTan
 {
     public partial class FormKho : DevExpress.XtraEditors.XtraForm
     {
+
+        int viTri;
+        bool dangThemMoi; 
         public FormKho()
         {
             InitializeComponent();
@@ -41,9 +44,47 @@ namespace QlvtPhanTan
 
             this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connectStr;
             this.phieuXuatTableAdapter.Fill(this.DS.PhieuXuat);
-            // TODO: This line of code loads data into the 'dS.Kho' table. You can move, or remove it, as needed.
-         
 
+
+            cmbChiNhanh.DataSource = Program.bdsDspm;
+            cmbChiNhanh.DisplayMember = "TENCN";
+            cmbChiNhanh.ValueMember = "TENSERVER";
+            cmbChiNhanh.SelectedIndex = Program.chiNhanh;
+
+            // phân quyền 
+            if (Program.role == "CONGTY")
+            {
+                cmbChiNhanh.Enabled = true;
+                btnThem.Enabled = btnXoaKho.Enabled = btnHieuChinhKho.Enabled = btnGhiKho.Enabled = btnPhucHoiKho.Enabled = false;
+            }
+            else
+            {
+                cmbChiNhanh.Enabled = false;
+            }
+
+
+        }
+
+        private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            dangThemMoi = true; 
+            this.viTri = bdsKho.Position;
+            this.panelNhapLieuKho.Enabled = true;
+            maKhoTextEdit.Enabled = true;
+            bdsKho.AddNew();
+     
+            khoGridControl.Enabled = false;
+            btnThemKho.Enabled = btnXoaKho.Enabled = btnHieuChinhKho.Enabled = btnReloadKho.Enabled = btnThoatKho.Enabled = false;
+            btnGhiKho.Enabled = btnPhucHoiKho.Enabled = true;
+        }
+
+        private void btnXoaKho_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            // kiểm tra xem thằng kho này đã nằm trong chi tiết phiếu nào chưa. 
+            if (bdsDH)
+            {
+                
+            }
         }
     }
 }

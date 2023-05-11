@@ -70,14 +70,15 @@ namespace QlvtPhanTan
             this.TENKHO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.MACN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panelControlNhapLieuKho = new DevExpress.XtraEditors.PanelControl();
+            this.panelNhapLieuKho = new DevExpress.XtraEditors.PanelControl();
             this.mACNTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.dIACHITextEdit = new DevExpress.XtraEditors.TextEdit();
             this.tENKHOTextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.mAKHOTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.maKhoTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.bdsPX = new System.Windows.Forms.BindingSource(this.components);
             this.bdsPN = new System.Windows.Forms.BindingSource(this.components);
             this.bdsDH = new System.Windows.Forms.BindingSource(this.components);
+            this.btnThem = new DevExpress.XtraBars.BarButtonItem();
             mAKHOLabel = new System.Windows.Forms.Label();
             tENKHOLabel = new System.Windows.Forms.Label();
             dIACHILabel = new System.Windows.Forms.Label();
@@ -89,12 +90,12 @@ namespace QlvtPhanTan
             ((System.ComponentModel.ISupportInitialize)(this.bdsKho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khoGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControlNhapLieuKho)).BeginInit();
-            this.panelControlNhapLieuKho.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelNhapLieuKho)).BeginInit();
+            this.panelNhapLieuKho.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mACNTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dIACHITextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tENKHOTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mAKHOTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maKhoTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDH)).BeginInit();
@@ -174,9 +175,10 @@ namespace QlvtPhanTan
             this.btnPhucHoiKho,
             this.btnReloadKho,
             this.btnThoatKho,
-            this.btnHieuChinhKho});
+            this.btnHieuChinhKho,
+            this.btnThem});
             this.barManager.MainMenu = this.bar2;
-            this.barManager.MaxItemId = 11;
+            this.barManager.MaxItemId = 12;
             this.barManager.StatusBar = this.bar3;
             // 
             // bar1
@@ -188,7 +190,7 @@ namespace QlvtPhanTan
             this.bar1.FloatLocation = new System.Drawing.Point(499, 190);
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThemKho, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThem, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoaKho, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnHieuChinhKho, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhiKho, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
@@ -215,6 +217,7 @@ namespace QlvtPhanTan
             this.btnXoaKho.Id = 6;
             this.btnXoaKho.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnXoaKho.ImageOptions.SvgImage")));
             this.btnXoaKho.Name = "btnXoaKho";
+            this.btnXoaKho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoaKho_ItemClick);
             // 
             // btnHieuChinhKho
             // 
@@ -449,21 +452,22 @@ namespace QlvtPhanTan
             this.MACN.VisibleIndex = 3;
             this.MACN.Width = 94;
             // 
-            // panelControlNhapLieuKho
+            // panelNhapLieuKho
             // 
-            this.panelControlNhapLieuKho.Controls.Add(mACNLabel);
-            this.panelControlNhapLieuKho.Controls.Add(this.mACNTextEdit);
-            this.panelControlNhapLieuKho.Controls.Add(dIACHILabel);
-            this.panelControlNhapLieuKho.Controls.Add(this.dIACHITextEdit);
-            this.panelControlNhapLieuKho.Controls.Add(tENKHOLabel);
-            this.panelControlNhapLieuKho.Controls.Add(this.tENKHOTextEdit);
-            this.panelControlNhapLieuKho.Controls.Add(mAKHOLabel);
-            this.panelControlNhapLieuKho.Controls.Add(this.mAKHOTextEdit);
-            this.panelControlNhapLieuKho.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControlNhapLieuKho.Location = new System.Drawing.Point(0, 321);
-            this.panelControlNhapLieuKho.Name = "panelControlNhapLieuKho";
-            this.panelControlNhapLieuKho.Size = new System.Drawing.Size(1118, 305);
-            this.panelControlNhapLieuKho.TabIndex = 10;
+            this.panelNhapLieuKho.Controls.Add(mACNLabel);
+            this.panelNhapLieuKho.Controls.Add(this.mACNTextEdit);
+            this.panelNhapLieuKho.Controls.Add(dIACHILabel);
+            this.panelNhapLieuKho.Controls.Add(this.dIACHITextEdit);
+            this.panelNhapLieuKho.Controls.Add(tENKHOLabel);
+            this.panelNhapLieuKho.Controls.Add(this.tENKHOTextEdit);
+            this.panelNhapLieuKho.Controls.Add(mAKHOLabel);
+            this.panelNhapLieuKho.Controls.Add(this.maKhoTextEdit);
+            this.panelNhapLieuKho.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelNhapLieuKho.Enabled = false;
+            this.panelNhapLieuKho.Location = new System.Drawing.Point(0, 321);
+            this.panelNhapLieuKho.Name = "panelNhapLieuKho";
+            this.panelNhapLieuKho.Size = new System.Drawing.Size(1118, 305);
+            this.panelNhapLieuKho.TabIndex = 10;
             // 
             // mACNTextEdit
             // 
@@ -492,14 +496,14 @@ namespace QlvtPhanTan
             this.tENKHOTextEdit.Size = new System.Drawing.Size(125, 22);
             this.tENKHOTextEdit.TabIndex = 3;
             // 
-            // mAKHOTextEdit
+            // maKhoTextEdit
             // 
-            this.mAKHOTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsKho, "MAKHO", true));
-            this.mAKHOTextEdit.Location = new System.Drawing.Point(110, 47);
-            this.mAKHOTextEdit.MenuManager = this.barManager;
-            this.mAKHOTextEdit.Name = "mAKHOTextEdit";
-            this.mAKHOTextEdit.Size = new System.Drawing.Size(125, 22);
-            this.mAKHOTextEdit.TabIndex = 1;
+            this.maKhoTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsKho, "MAKHO", true));
+            this.maKhoTextEdit.Location = new System.Drawing.Point(110, 47);
+            this.maKhoTextEdit.MenuManager = this.barManager;
+            this.maKhoTextEdit.Name = "maKhoTextEdit";
+            this.maKhoTextEdit.Size = new System.Drawing.Size(125, 22);
+            this.maKhoTextEdit.TabIndex = 1;
             // 
             // bdsPX
             // 
@@ -516,12 +520,20 @@ namespace QlvtPhanTan
             this.bdsDH.DataMember = "FK_DatHang_Kho";
             this.bdsDH.DataSource = this.bdsKho;
             // 
+            // btnThem
+            // 
+            this.btnThem.Caption = "Thêm";
+            this.btnThem.Id = 11;
+            this.btnThem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
+            this.btnThem.Name = "btnThem";
+            this.btnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThem_ItemClick);
+            // 
             // FormKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1118, 646);
-            this.Controls.Add(this.panelControlNhapLieuKho);
+            this.Controls.Add(this.panelNhapLieuKho);
             this.Controls.Add(this.khoGridControl);
             this.Controls.Add(this.panelControl);
             this.Controls.Add(this.barDockControlTop);
@@ -541,13 +553,13 @@ namespace QlvtPhanTan
             ((System.ComponentModel.ISupportInitialize)(this.bdsKho)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khoGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControlNhapLieuKho)).EndInit();
-            this.panelControlNhapLieuKho.ResumeLayout(false);
-            this.panelControlNhapLieuKho.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelNhapLieuKho)).EndInit();
+            this.panelNhapLieuKho.ResumeLayout(false);
+            this.panelNhapLieuKho.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mACNTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dIACHITextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tENKHOTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mAKHOTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maKhoTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDH)).EndInit();
@@ -584,7 +596,7 @@ namespace QlvtPhanTan
         private DS DS;
         private DSTableAdapters.KhoTableAdapter khoTableAdapter;
         private DSTableAdapters.TableAdapterManager tableAdapterManager;
-        private DevExpress.XtraEditors.PanelControl panelControlNhapLieuKho;
+        private DevExpress.XtraEditors.PanelControl panelNhapLieuKho;
         private DevExpress.XtraGrid.GridControl khoGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn MAKHO;
@@ -594,12 +606,13 @@ namespace QlvtPhanTan
         private DevExpress.XtraEditors.TextEdit mACNTextEdit;
         private DevExpress.XtraEditors.TextEdit dIACHITextEdit;
         private DevExpress.XtraEditors.TextEdit tENKHOTextEdit;
-        private DevExpress.XtraEditors.TextEdit mAKHOTextEdit;
+        private DevExpress.XtraEditors.TextEdit maKhoTextEdit;
         private DSTableAdapters.PhieuXuatTableAdapter phieuXuatTableAdapter;
         private System.Windows.Forms.BindingSource bdsPX;
         private DSTableAdapters.PhieuNhapTableAdapter phieuNhapTableAdapter;
         private System.Windows.Forms.BindingSource bdsPN;
         private DSTableAdapters.DatHangTableAdapter datHangTableAdapter;
         private System.Windows.Forms.BindingSource bdsDH;
+        private DevExpress.XtraBars.BarButtonItem btnThem;
     }
 }

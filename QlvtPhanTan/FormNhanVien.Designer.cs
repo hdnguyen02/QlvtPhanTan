@@ -68,6 +68,15 @@ namespace QlvtPhanTan
             this.tableAdapterManager = new QlvtPhanTan.DSTableAdapters.TableAdapterManager();
             this.nhanVienGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colMANV = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHO = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTEN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSOCMND = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNGAYSINH = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLUONG = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMACN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTrangThaiXoa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelNhapLieuNV = new DevExpress.XtraEditors.PanelControl();
             this.maNVTextBox = new System.Windows.Forms.TextBox();
             this.ngaySinhTextBox = new DevExpress.XtraEditors.DateEdit();
@@ -84,15 +93,6 @@ namespace QlvtPhanTan
             this.bdsPhieuNhap = new System.Windows.Forms.BindingSource(this.components);
             this.phieuNhapTableAdapter = new QlvtPhanTan.DSTableAdapters.PhieuNhapTableAdapter();
             this.phieuXuatTableAdapter = new QlvtPhanTan.DSTableAdapters.PhieuXuatTableAdapter();
-            this.colMANV = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colHO = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTEN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colSOCMND = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNGAYSINH = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colLUONG = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMACN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTrangThaiXoa = new DevExpress.XtraGrid.Columns.GridColumn();
             labelLuong = new System.Windows.Forms.Label();
             mACNLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
@@ -466,6 +466,87 @@ namespace QlvtPhanTan
             this.gridView1.GridControl = this.nhanVienGridControl;
             this.gridView1.Name = "gridView1";
             // 
+            // colMANV
+            // 
+            this.colMANV.FieldName = "MANV";
+            this.colMANV.MinWidth = 25;
+            this.colMANV.Name = "colMANV";
+            this.colMANV.Visible = true;
+            this.colMANV.VisibleIndex = 0;
+            this.colMANV.Width = 94;
+            // 
+            // colHO
+            // 
+            this.colHO.FieldName = "HO";
+            this.colHO.MinWidth = 25;
+            this.colHO.Name = "colHO";
+            this.colHO.Visible = true;
+            this.colHO.VisibleIndex = 1;
+            this.colHO.Width = 94;
+            // 
+            // colTEN
+            // 
+            this.colTEN.FieldName = "TEN";
+            this.colTEN.MinWidth = 25;
+            this.colTEN.Name = "colTEN";
+            this.colTEN.Visible = true;
+            this.colTEN.VisibleIndex = 2;
+            this.colTEN.Width = 94;
+            // 
+            // colSOCMND
+            // 
+            this.colSOCMND.FieldName = "SOCMND";
+            this.colSOCMND.MinWidth = 25;
+            this.colSOCMND.Name = "colSOCMND";
+            this.colSOCMND.Visible = true;
+            this.colSOCMND.VisibleIndex = 3;
+            this.colSOCMND.Width = 94;
+            // 
+            // colDIACHI
+            // 
+            this.colDIACHI.FieldName = "DIACHI";
+            this.colDIACHI.MinWidth = 25;
+            this.colDIACHI.Name = "colDIACHI";
+            this.colDIACHI.Visible = true;
+            this.colDIACHI.VisibleIndex = 4;
+            this.colDIACHI.Width = 94;
+            // 
+            // colNGAYSINH
+            // 
+            this.colNGAYSINH.FieldName = "NGAYSINH";
+            this.colNGAYSINH.MinWidth = 25;
+            this.colNGAYSINH.Name = "colNGAYSINH";
+            this.colNGAYSINH.Visible = true;
+            this.colNGAYSINH.VisibleIndex = 5;
+            this.colNGAYSINH.Width = 94;
+            // 
+            // colLUONG
+            // 
+            this.colLUONG.FieldName = "LUONG";
+            this.colLUONG.MinWidth = 25;
+            this.colLUONG.Name = "colLUONG";
+            this.colLUONG.Visible = true;
+            this.colLUONG.VisibleIndex = 6;
+            this.colLUONG.Width = 94;
+            // 
+            // colMACN
+            // 
+            this.colMACN.FieldName = "MACN";
+            this.colMACN.MinWidth = 25;
+            this.colMACN.Name = "colMACN";
+            this.colMACN.Visible = true;
+            this.colMACN.VisibleIndex = 7;
+            this.colMACN.Width = 94;
+            // 
+            // colTrangThaiXoa
+            // 
+            this.colTrangThaiXoa.FieldName = "TrangThaiXoa";
+            this.colTrangThaiXoa.MinWidth = 25;
+            this.colTrangThaiXoa.Name = "colTrangThaiXoa";
+            this.colTrangThaiXoa.Visible = true;
+            this.colTrangThaiXoa.VisibleIndex = 8;
+            this.colTrangThaiXoa.Width = 94;
+            // 
             // panelNhapLieuNV
             // 
             this.panelNhapLieuNV.Controls.Add(mANVLabel);
@@ -607,87 +688,6 @@ namespace QlvtPhanTan
             // phieuXuatTableAdapter
             // 
             this.phieuXuatTableAdapter.ClearBeforeFill = true;
-            // 
-            // colMANV
-            // 
-            this.colMANV.FieldName = "MANV";
-            this.colMANV.MinWidth = 25;
-            this.colMANV.Name = "colMANV";
-            this.colMANV.Visible = true;
-            this.colMANV.VisibleIndex = 0;
-            this.colMANV.Width = 94;
-            // 
-            // colHO
-            // 
-            this.colHO.FieldName = "HO";
-            this.colHO.MinWidth = 25;
-            this.colHO.Name = "colHO";
-            this.colHO.Visible = true;
-            this.colHO.VisibleIndex = 1;
-            this.colHO.Width = 94;
-            // 
-            // colTEN
-            // 
-            this.colTEN.FieldName = "TEN";
-            this.colTEN.MinWidth = 25;
-            this.colTEN.Name = "colTEN";
-            this.colTEN.Visible = true;
-            this.colTEN.VisibleIndex = 2;
-            this.colTEN.Width = 94;
-            // 
-            // colSOCMND
-            // 
-            this.colSOCMND.FieldName = "SOCMND";
-            this.colSOCMND.MinWidth = 25;
-            this.colSOCMND.Name = "colSOCMND";
-            this.colSOCMND.Visible = true;
-            this.colSOCMND.VisibleIndex = 3;
-            this.colSOCMND.Width = 94;
-            // 
-            // colDIACHI
-            // 
-            this.colDIACHI.FieldName = "DIACHI";
-            this.colDIACHI.MinWidth = 25;
-            this.colDIACHI.Name = "colDIACHI";
-            this.colDIACHI.Visible = true;
-            this.colDIACHI.VisibleIndex = 4;
-            this.colDIACHI.Width = 94;
-            // 
-            // colNGAYSINH
-            // 
-            this.colNGAYSINH.FieldName = "NGAYSINH";
-            this.colNGAYSINH.MinWidth = 25;
-            this.colNGAYSINH.Name = "colNGAYSINH";
-            this.colNGAYSINH.Visible = true;
-            this.colNGAYSINH.VisibleIndex = 5;
-            this.colNGAYSINH.Width = 94;
-            // 
-            // colLUONG
-            // 
-            this.colLUONG.FieldName = "LUONG";
-            this.colLUONG.MinWidth = 25;
-            this.colLUONG.Name = "colLUONG";
-            this.colLUONG.Visible = true;
-            this.colLUONG.VisibleIndex = 6;
-            this.colLUONG.Width = 94;
-            // 
-            // colMACN
-            // 
-            this.colMACN.FieldName = "MACN";
-            this.colMACN.MinWidth = 25;
-            this.colMACN.Name = "colMACN";
-            this.colMACN.Visible = true;
-            this.colMACN.VisibleIndex = 7;
-            this.colMACN.Width = 94;
-            // 
-            // colTrangThaiXoa
-            // 
-            this.colTrangThaiXoa.FieldName = "TrangThaiXoa";
-            this.colTrangThaiXoa.MinWidth = 25;
-            this.colTrangThaiXoa.Name = "colTrangThaiXoa";
-            this.colTrangThaiXoa.Visible = true;
-            this.colTrangThaiXoa.VisibleIndex = 8;
-            this.colTrangThaiXoa.Width = 94;
             // 
             // FormNhanVien
             // 

@@ -345,6 +345,10 @@ namespace QlvtPhanTan
 
         }
 
+        // viêt 1 hàm chuẩn hóa dữ liệu đầu vào.  
+       
+
+
         private void btnGhiVT_Click(object sender, EventArgs e)
         {
             try

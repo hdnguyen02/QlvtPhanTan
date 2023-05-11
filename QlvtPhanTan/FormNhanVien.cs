@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace QlvtPhanTan
@@ -115,6 +116,12 @@ namespace QlvtPhanTan
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+
+
+            if(dauVaoHopLe() == false){
+                return;
+            }
+
             /*if (btnThemNV.Enabled == false) // đang thêm nhân viên. lúc đó thằng đó cũng thêm nhân viên. 
             {
               
@@ -196,7 +203,37 @@ namespace QlvtPhanTan
       
         }
 
-       
+
+        private bool dauVaoHopLe()
+        {
+            // trước tiên cần kiểm tra xem 1 số có bị vước quá kích thước hay không.  
+            // không cần lo về kích thước. 
+
+            // số chứng minh nhân dân không bao gồm chữ trong đó. và kiểm tra giá trị ngày sinh. 
+            if (Regex.IsMatch(hoTextBox.Text, @"^[A-Za-z ]+$") == false)
+            {
+                MessageBox.Show("Họ nhân viên chỉ có chữ cái và khoảng trắng", "", MessageBoxButtons.OK);
+                return false;
+            }
+            if (Regex.IsMatch(tenTextBox.Text, @"^[A-Za-z ]+$") == false)
+            {
+                MessageBox.Show("Tên nhân viên chỉ có chữ cái và khoảng trắng", "", MessageBoxButtons.OK);
+                return false;
+            }
+            if (Regex.IsMatch(soCMNDTextBox.Text, @"^\d+$") == false){
+                MessageBox.Show("Số cmnd chỉ bao gồm số", "", MessageBoxButtons.OK);
+                return false;
+            }
+            // ngày sinh bé hơn ngày hiện tại 
+            if (ngaySinhTextBox.DateTime >= DateTime.Now.Date)
+            {
+                MessageBox.Show("Ngày sinh không hợp lệ", "", MessageBoxButtons.OK);
+                return false;
+            }
+            return true;
+        }
+
+
 
         private void btnReloadNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
