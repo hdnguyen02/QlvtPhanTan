@@ -60,6 +60,24 @@ namespace QlvtPhanTan
             this.phieuNhapTableAdapter.Fill(this.DS.PhieuNhap);
             this.CTPNTableAdapter.Connection.ConnectionString = Program.connectStr;
             this.CTPNTableAdapter.Fill(this.DS.CTPN);
+
+            cmbChiNhanh.DataSource = Program.bdsDspm;
+            cmbChiNhanh.DisplayMember = "TENCN";
+            cmbChiNhanh.ValueMember = "TENSERVER";
+            cmbChiNhanh.SelectedIndex = Program.chiNhanh;  // chi nhánh mà nhân viên đó chọn vào.
+
+            if (Program.role == "CONGTY")
+            {
+
+                btnThemPN.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = false;
+            }
+            else 
+            {
+                cmbChiNhanh.Enabled = false;
+            }
+
+
+
         }
 
       
@@ -95,6 +113,8 @@ namespace QlvtPhanTan
             if (MessageBox.Show("Bạn có thực muốn xóa phiếu nhập này không ?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 String msPNXoa = ((DataRowView)bdsPN[bdsPN.Position])["MAPN"].ToString();
+
+                // xóa cái này không liên quan. 
                 try
                 {
                     bdsPN.RemoveCurrent();
@@ -118,13 +138,15 @@ namespace QlvtPhanTan
 
         private void btnThemPN_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            dangThemMoi = true;
             viTri = bdsPN.Position;
             bdsPN.AddNew();
             cmbMaSoDDH.Visible = true;
             masoDDHTextEdit.Visible = false;
-            
 
-            // tạo ra string lệnh 
+            ngayDateEdit.DateTime = DateTime.Now; 
+
+    
             string strlenh = "EXEC spDDHChuaLapPN";
 
             DataTable dt = Program.ExecSqlDataTable(strlenh);
@@ -144,9 +166,6 @@ namespace QlvtPhanTan
             panelNhapLieuPN.Enabled = true;  // chỉ cho nó chọn các đơn hàng đó thôi. 
 
             phieuNhapGridControl.Enabled = false;
-
-
-            // ẩn đi các nút khác 
             btnThemPN.Enabled = btnSua.Enabled = btnXoa.Enabled = btnThoat.Enabled = btnReload.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = true;
             maPNTextEdit.Enabled = true;
@@ -176,8 +195,32 @@ namespace QlvtPhanTan
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (ngayDateEdit.DateTime > DateTime.Now)
+            {
+                MessageBox.Show("Ngày lập phiếu nhập không hợp lệ", "", MessageBoxButtons.OK);
+                return; 
+            }
+            
             try
             {
+
+                if (dangThemMoi)
+                {
+                    dangThemMoi = false;
+                    string strLenh = "declare @result int exec @result = spKiemTraMaPhieuNhap '" + maPNTextEdit.Text + "' select @result";
+
+                    Program.myReader = Program.ExecSqlDataReader(strLenh);
+                    Program.myReader.Read();
+                    int result = int.Parse(Program.myReader.GetValue(0).ToString());
+                    Program.myReader.Close();
+
+                    if (result == 1)
+                    {
+                        throw new Exception("Mã phiếu xuất đã được sử dụng! Vui lòng chọn mã kho khác");
+                    }
+
+                }
+
                 bdsPN.EndEdit();
                 bdsPN.ResetCurrentItem();
                 this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connectStr;
@@ -233,6 +276,10 @@ namespace QlvtPhanTan
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             // phục hồi không chính sữa edit gì hết. 
+            if(dangThemMoi)
+            {
+                dangThemMoi = false; 
+            }
             bdsPN.CancelEdit();
             if (btnThemPN.Enabled == false)
             {
@@ -253,6 +300,45 @@ namespace QlvtPhanTan
 
         private void cmbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            if (cmbChiNhanh.SelectedValue.ToString() == "System.Data.DataRowView") return;
+            int selectIndex = this.cmbChiNhanh.SelectedIndex;
+            Program.servername = this.cmbChiNhanh.SelectedValue.ToString();
+
+
+            if (selectIndex == Program.chiNhanh)
+            {
+                Program.loginName = Program.loginNameType;
+                Program.password = Program.passwordType;
+            }
+
+            else // người dùng chọn sang chi nhánh khác. 
+            {
+                Program.loginName = Program.remoteLogin;
+                Program.password = Program.remotePassword;
+            }
+            if (Program.KetNoi() == 0)
+            {
+                MessageBox.Show("Xảy ra lỗi kết nối với chi nhánh hiện tại", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+
+            this.hoTenNVTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.hoTenNVTableAdapter.Fill(this.DS.HoTenNV);
+
+            this.vattuTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.vattuTableAdapter.Fill(this.DS.Vattu);
+
+
+            this.khoTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.khoTableAdapter.Fill(this.DS.Kho);
+
+            this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.phieuNhapTableAdapter.Fill(this.DS.PhieuNhap);
+            this.CTPNTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.CTPNTableAdapter.Fill(this.DS.CTPN);
+
+
 
         }
 
@@ -366,7 +452,7 @@ namespace QlvtPhanTan
                         throw new Exception("Số lượng vật tư phiếu nhập không được phép lớn hơn số lượng vật tư chi tiết đặt hàng");
                     }
                     string strLenh = "DECLARE @RESULT INT EXEC @RESULT = spNhapVT '" + maVTTextEdit.Text + "','" + slpn.ToString() + "' " + "SELECT 'result'=@RESULT"; ;
-                    Console.WriteLine(strLenh); 
+                    
                     Program.myReader = Program.ExecSqlDataReader(strLenh);
                     Program.myReader.Read();
       

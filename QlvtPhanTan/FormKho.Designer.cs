@@ -40,7 +40,7 @@ namespace QlvtPhanTan
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.btnThemKho = new DevExpress.XtraBars.BarButtonItem();
+            this.btnThem = new DevExpress.XtraBars.BarButtonItem();
             this.btnXoaKho = new DevExpress.XtraBars.BarButtonItem();
             this.btnHieuChinhKho = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhiKho = new DevExpress.XtraBars.BarButtonItem();
@@ -53,6 +53,7 @@ namespace QlvtPhanTan
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.btnThemKho = new DevExpress.XtraBars.BarButtonItem();
             this.btnHieuChinh = new DevExpress.XtraBars.BarButtonItem();
             this.panelControl = new DevExpress.XtraEditors.PanelControl();
             this.cmbChiNhanh = new System.Windows.Forms.ComboBox();
@@ -71,14 +72,13 @@ namespace QlvtPhanTan
             this.DIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.MACN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelNhapLieuKho = new DevExpress.XtraEditors.PanelControl();
-            this.mACNTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.maCNTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.dIACHITextEdit = new DevExpress.XtraEditors.TextEdit();
             this.tENKHOTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.maKhoTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.bdsPX = new System.Windows.Forms.BindingSource(this.components);
             this.bdsPN = new System.Windows.Forms.BindingSource(this.components);
             this.bdsDH = new System.Windows.Forms.BindingSource(this.components);
-            this.btnThem = new DevExpress.XtraBars.BarButtonItem();
             mAKHOLabel = new System.Windows.Forms.Label();
             tENKHOLabel = new System.Windows.Forms.Label();
             dIACHILabel = new System.Windows.Forms.Label();
@@ -92,7 +92,7 @@ namespace QlvtPhanTan
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelNhapLieuKho)).BeginInit();
             this.panelNhapLieuKho.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mACNTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maCNTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dIACHITextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tENKHOTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maKhoTextEdit.Properties)).BeginInit();
@@ -204,12 +204,13 @@ namespace QlvtPhanTan
             this.barButtonItem1.Id = 0;
             this.barButtonItem1.Name = "barButtonItem1";
             // 
-            // btnThemKho
+            // btnThem
             // 
-            this.btnThemKho.Caption = "Thêm";
-            this.btnThemKho.Id = 1;
-            this.btnThemKho.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnThemKho.ImageOptions.SvgImage")));
-            this.btnThemKho.Name = "btnThemKho";
+            this.btnThem.Caption = "Thêm";
+            this.btnThem.Id = 11;
+            this.btnThem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnThem.ImageOptions.SvgImage")));
+            this.btnThem.Name = "btnThem";
+            this.btnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThem_ItemClick);
             // 
             // btnXoaKho
             // 
@@ -225,6 +226,7 @@ namespace QlvtPhanTan
             this.btnHieuChinhKho.Id = 10;
             this.btnHieuChinhKho.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnHieuChinhKho.ImageOptions.SvgImage")));
             this.btnHieuChinhKho.Name = "btnHieuChinhKho";
+            this.btnHieuChinhKho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHieuChinhKho_ItemClick);
             // 
             // btnGhiKho
             // 
@@ -233,6 +235,7 @@ namespace QlvtPhanTan
             this.btnGhiKho.Id = 3;
             this.btnGhiKho.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnGhiKho.ImageOptions.SvgImage")));
             this.btnGhiKho.Name = "btnGhiKho";
+            this.btnGhiKho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhiKho_ItemClick);
             // 
             // btnPhucHoiKho
             // 
@@ -241,6 +244,7 @@ namespace QlvtPhanTan
             this.btnPhucHoiKho.Id = 7;
             this.btnPhucHoiKho.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPhucHoiKho.ImageOptions.SvgImage")));
             this.btnPhucHoiKho.Name = "btnPhucHoiKho";
+            this.btnPhucHoiKho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhucHoiKho_ItemClick);
             // 
             // btnReloadKho
             // 
@@ -248,6 +252,7 @@ namespace QlvtPhanTan
             this.btnReloadKho.Id = 8;
             this.btnReloadKho.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnReloadKho.ImageOptions.SvgImage")));
             this.btnReloadKho.Name = "btnReloadKho";
+            this.btnReloadKho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReloadKho_ItemClick);
             // 
             // btnThoatKho
             // 
@@ -255,6 +260,7 @@ namespace QlvtPhanTan
             this.btnThoatKho.Id = 9;
             this.btnThoatKho.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnThoatKho.ImageOptions.SvgImage")));
             this.btnThoatKho.Name = "btnThoatKho";
+            this.btnThoatKho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoatKho_ItemClick);
             // 
             // bar2
             // 
@@ -314,6 +320,13 @@ namespace QlvtPhanTan
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 575);
             // 
+            // btnThemKho
+            // 
+            this.btnThemKho.Caption = "Thêm";
+            this.btnThemKho.Id = 1;
+            this.btnThemKho.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnThemKho.ImageOptions.SvgImage")));
+            this.btnThemKho.Name = "btnThemKho";
+            // 
             // btnHieuChinh
             // 
             this.btnHieuChinh.Caption = "Hiệu chỉnh";
@@ -334,10 +347,11 @@ namespace QlvtPhanTan
             // cmbChiNhanh
             // 
             this.cmbChiNhanh.FormattingEnabled = true;
-            this.cmbChiNhanh.Location = new System.Drawing.Point(110, 14);
+            this.cmbChiNhanh.Location = new System.Drawing.Point(110, 15);
             this.cmbChiNhanh.Name = "cmbChiNhanh";
             this.cmbChiNhanh.Size = new System.Drawing.Size(173, 24);
             this.cmbChiNhanh.TabIndex = 1;
+            this.cmbChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cmbChiNhanh_SelectedIndexChanged);
             // 
             // labelCmbChiNhanh
             // 
@@ -455,7 +469,7 @@ namespace QlvtPhanTan
             // panelNhapLieuKho
             // 
             this.panelNhapLieuKho.Controls.Add(mACNLabel);
-            this.panelNhapLieuKho.Controls.Add(this.mACNTextEdit);
+            this.panelNhapLieuKho.Controls.Add(this.maCNTextEdit);
             this.panelNhapLieuKho.Controls.Add(dIACHILabel);
             this.panelNhapLieuKho.Controls.Add(this.dIACHITextEdit);
             this.panelNhapLieuKho.Controls.Add(tENKHOLabel);
@@ -469,14 +483,15 @@ namespace QlvtPhanTan
             this.panelNhapLieuKho.Size = new System.Drawing.Size(1118, 305);
             this.panelNhapLieuKho.TabIndex = 10;
             // 
-            // mACNTextEdit
+            // maCNTextEdit
             // 
-            this.mACNTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsKho, "MACN", true));
-            this.mACNTextEdit.Location = new System.Drawing.Point(900, 45);
-            this.mACNTextEdit.MenuManager = this.barManager;
-            this.mACNTextEdit.Name = "mACNTextEdit";
-            this.mACNTextEdit.Size = new System.Drawing.Size(125, 22);
-            this.mACNTextEdit.TabIndex = 7;
+            this.maCNTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsKho, "MACN", true));
+            this.maCNTextEdit.Enabled = false;
+            this.maCNTextEdit.Location = new System.Drawing.Point(900, 45);
+            this.maCNTextEdit.MenuManager = this.barManager;
+            this.maCNTextEdit.Name = "maCNTextEdit";
+            this.maCNTextEdit.Size = new System.Drawing.Size(125, 22);
+            this.maCNTextEdit.TabIndex = 7;
             // 
             // dIACHITextEdit
             // 
@@ -520,14 +535,6 @@ namespace QlvtPhanTan
             this.bdsDH.DataMember = "FK_DatHang_Kho";
             this.bdsDH.DataSource = this.bdsKho;
             // 
-            // btnThem
-            // 
-            this.btnThem.Caption = "Thêm";
-            this.btnThem.Id = 11;
-            this.btnThem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
-            this.btnThem.Name = "btnThem";
-            this.btnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThem_ItemClick);
-            // 
             // FormKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -556,7 +563,7 @@ namespace QlvtPhanTan
             ((System.ComponentModel.ISupportInitialize)(this.panelNhapLieuKho)).EndInit();
             this.panelNhapLieuKho.ResumeLayout(false);
             this.panelNhapLieuKho.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mACNTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maCNTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dIACHITextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tENKHOTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maKhoTextEdit.Properties)).EndInit();
@@ -603,7 +610,7 @@ namespace QlvtPhanTan
         private DevExpress.XtraGrid.Columns.GridColumn TENKHO;
         private DevExpress.XtraGrid.Columns.GridColumn DIACHI;
         private DevExpress.XtraGrid.Columns.GridColumn MACN;
-        private DevExpress.XtraEditors.TextEdit mACNTextEdit;
+        private DevExpress.XtraEditors.TextEdit maCNTextEdit;
         private DevExpress.XtraEditors.TextEdit dIACHITextEdit;
         private DevExpress.XtraEditors.TextEdit tENKHOTextEdit;
         private DevExpress.XtraEditors.TextEdit maKhoTextEdit;

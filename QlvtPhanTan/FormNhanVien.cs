@@ -33,10 +33,10 @@ namespace QlvtPhanTan
             this.maCN = ((DataRowView)bdsNhanVien[0])["MACN"].ToString();  // vẫn có xác xuất lỗi 
 
        
-            cmbChiNhanh.DataSource = Program.bdsDspm;
-            cmbChiNhanh.DisplayMember = "TENCN";
-            cmbChiNhanh.ValueMember = "TENSERVER";
-            cmbChiNhanh.SelectedIndex = Program.chiNhanh; 
+            cmbCN.DataSource = Program.bdsDspm;
+            cmbCN.DisplayMember = "TENCN";
+            cmbCN.ValueMember = "TENSERVER";
+            cmbCN.SelectedIndex = Program.chiNhanh; 
             this.showAndHiddenBtn();
         }
 
@@ -44,12 +44,12 @@ namespace QlvtPhanTan
         {
             if (Program.role == "CONGTY")
             {
-                cmbChiNhanh.Enabled = true; 
+                cmbCN.Enabled = true; 
                 btnThemNV.Enabled = btnXoaNV.Enabled = btnSuaNV.Enabled = btnGhiNV.Enabled = btnPhucHoiNV.Enabled = false;
             } 
             else 
             {
-                cmbChiNhanh.Enabled = false;
+                cmbCN.Enabled = false;
             }
         }
 
@@ -77,39 +77,10 @@ namespace QlvtPhanTan
         }
 
 
-        private void cmbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbCN_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (cmbChiNhanh.SelectedValue.ToString() == "System.Data.DataRowView") return;
-            int selectIndex = this.cmbChiNhanh.SelectedIndex;
-            Program.servername = this.cmbChiNhanh.SelectedValue.ToString();
-            Console.WriteLine(Program.servername); 
-
-            if (selectIndex == Program.chiNhanh)  
-            {  
-                Program.loginName = Program.loginNameType;
-                Program.password = Program.passwordType; 
-            }
-
-            else // người dùng chọn sang chi nhánh khác. 
-            {
-                Program.loginName = Program.remoteLogin;
-                Program.password = Program.remotePassword; 
-            }
-            if (Program.KetNoi() == 0)
-            {
-                MessageBox.Show("Xảy ra lỗi kết nối với chi nhánh hiện tại", "Thông báo", MessageBoxButtons.OK); 
-                return;
-            }
-            this.nhanVienTableAdapter.Connection.ConnectionString = Program.connectStr;
-            this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connectStr;
-            this.datHangTableAdapter.Connection.ConnectionString = Program.connectStr;
-            this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connectStr;
-
-            this.nhanVienTableAdapter.Fill(this.DS.NhanVien);
-            this.phieuXuatTableAdapter.Fill(this.DS.PhieuXuat);
-            this.datHangTableAdapter.Fill(this.DS.DatHang);
-            this.phieuNhapTableAdapter.Fill(this.DS.PhieuNhap); 
+            
         }
 
 
@@ -206,10 +177,6 @@ namespace QlvtPhanTan
 
         private bool dauVaoHopLe()
         {
-            // trước tiên cần kiểm tra xem 1 số có bị vước quá kích thước hay không.  
-            // không cần lo về kích thước. 
-
-            // số chứng minh nhân dân không bao gồm chữ trong đó. và kiểm tra giá trị ngày sinh. 
             if (Regex.IsMatch(hoTextBox.Text, @"^[A-Za-z ]+$") == false)
             {
                 MessageBox.Show("Họ nhân viên chỉ có chữ cái và khoảng trắng", "", MessageBoxButtons.OK);
@@ -295,6 +262,40 @@ namespace QlvtPhanTan
 
             btnThemNV.Enabled = btnXoaNV.Enabled = btnSuaNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = false;
             btnPhucHoiNV.Enabled = btnGhiNV.Enabled = true;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbCN.SelectedValue.ToString() == "System.Data.DataRowView") return;
+            int selectIndex = this.cmbCN.SelectedIndex;
+            Program.servername = this.cmbCN.SelectedValue.ToString();
+            Console.WriteLine(Program.servername);
+
+            if (selectIndex == Program.chiNhanh)
+            {
+                Program.loginName = Program.loginNameType;
+                Program.password = Program.passwordType;
+            }
+
+            else // người dùng chọn sang chi nhánh khác. 
+            {
+                Program.loginName = Program.remoteLogin;
+                Program.password = Program.remotePassword;
+            }
+            if (Program.KetNoi() == 0)
+            {
+                MessageBox.Show("Xảy ra lỗi kết nối với chi nhánh hiện tại", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+            this.nhanVienTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.datHangTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connectStr;
+
+            this.nhanVienTableAdapter.Fill(this.DS.NhanVien);
+            this.phieuXuatTableAdapter.Fill(this.DS.PhieuXuat);
+            this.datHangTableAdapter.Fill(this.DS.DatHang);
+            this.phieuNhapTableAdapter.Fill(this.DS.PhieuNhap);
         }
     }
 }

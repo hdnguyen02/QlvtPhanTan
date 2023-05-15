@@ -7,6 +7,7 @@ namespace QlvtPhanTan
     public partial class FormDDH : DevExpress.XtraEditors.XtraForm
     {
         int viTri;
+        bool dangThemMoi = false; 
 
         public FormDDH()
         {
@@ -51,7 +52,7 @@ namespace QlvtPhanTan
 
             if (Program.role == "CONGTY")
             {
-                cmbChiNhanh.Enabled = true;
+  
                 btnThemDDH.Enabled = btnXoaDDH.Enabled = btnHieuChinhDDH.Enabled = btnGhiDDH.Enabled = btnPhucHoiDDH.Enabled = false;
             }
             else // với nhân viên hoặc chi nhánh được toàn quyền trên này. nhưng không được log sang chi nhánh khác. 
@@ -110,10 +111,12 @@ namespace QlvtPhanTan
 
         private void btnThemDDH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            dangThemMoi = true; 
             masoDDHTextEdit.Enabled = true;
             viTri = bdsDDH.Position;
             this.panelNhapLieuDDH.Enabled = true;
             bdsDDH.AddNew();
+            nGAYDateEdit.DateTime = DateTime.Now; 
             datHangGridControl.Enabled = false;
             btnThemDDH.Enabled = btnXoaDDH.Enabled = btnSuaDDH.Enabled = btnReloadDDH.Enabled = btnThoatDDH.Enabled = false;
             btnPhucHoiDDH.Enabled = btnGhiDDH.Enabled = true;
@@ -121,6 +124,10 @@ namespace QlvtPhanTan
 
         private void btnPhucHoiDDH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (dangThemMoi)
+            {
+                dangThemMoi = false;
+            }
             bdsDDH.CancelEdit();
             if (btnThemDDH.Enabled == false) {
                 reloadBdsDDH();
@@ -167,8 +174,45 @@ namespace QlvtPhanTan
 
         private void btnGhiDDH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+
+            // bắc ngoài lệ
+            if (nGAYDateEdit.DateTime > DateTime.Now)
+            {
+                MessageBox.Show("Ngày lập đơn không hợp lệ", "", MessageBoxButtons.OK);
+                return; 
+            }
+
+            
             try
             {
+
+                // kiểm tra xem mã đơn đặt hàng có trùng không rồi làm tiếp 
+                if (dangThemMoi)
+                {
+
+
+                    dangThemMoi = false;
+
+                    // trước tiên cần kiểm tra xem ngày lập có đang trong tương lai. 
+
+                   
+                    
+
+                    string strLenh = "declare @result int exec @result = spKiemTraMaDonDatHang '" + masoDDHTextEdit.Text + "' select @result";
+             
+                    Program.myReader = Program.ExecSqlDataReader(strLenh);
+                    Program.myReader.Read();
+                    int result = int.Parse(Program.myReader.GetValue(0).ToString());
+                    Program.myReader.Close();
+
+                    if (result == 1)
+                    {
+                        throw new Exception("Mã đơn đặt hàng đã được sử dụng! Vui lòng chọn mã kho khác");
+                    }
+
+
+                }
+
                 bdsDDH.EndEdit();
                 bdsDDH.ResetCurrentItem();
                 this.datHangTableAdapter.Connection.ConnectionString = Program.connectStr;
@@ -353,6 +397,49 @@ namespace QlvtPhanTan
 
         private void panelControl_Paint(object sender, PaintEventArgs e)
         {
+
+        }
+
+        private void cmbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //  rẻ sang server khác. 
+            if (cmbChiNhanh.SelectedValue.ToString() == "System.Data.DataRowView") return;
+            int selectIndex = this.cmbChiNhanh.SelectedIndex;
+            Program.servername = this.cmbChiNhanh.SelectedValue.ToString();
+
+
+            if (selectIndex == Program.chiNhanh)
+            {
+                Program.loginName = Program.loginNameType;
+                Program.password = Program.passwordType;
+            }
+
+            else // người dùng chọn sang chi nhánh khác. 
+            {
+                Program.loginName = Program.remoteLogin;
+                Program.password = Program.remotePassword;
+            }
+            if (Program.KetNoi() == 0)
+            {
+                MessageBox.Show("Xảy ra lỗi kết nối với chi nhánh hiện tại", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+
+            this.hoTenNVTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.datHangTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.CTDDHTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.khoTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.vattuTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.hoTenNVTableAdapter.Fill(this.DS.HoTenNV);
+            this.khoTableAdapter.Fill(this.DS.Kho);
+            this.vattuTableAdapter.Fill(this.DS.Vattu);
+            this.datHangTableAdapter.Fill(this.DS.DatHang);
+
+            this.CTDDHTableAdapter.Fill(this.DS.CTDDH);
+
+            this.phieuNhapTableAdapter.Fill(this.DS.PhieuNhap);
+
 
         }
     }

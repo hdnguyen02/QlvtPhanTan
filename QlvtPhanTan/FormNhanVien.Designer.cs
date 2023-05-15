@@ -93,6 +93,9 @@ namespace QlvtPhanTan
             this.bdsPhieuNhap = new System.Windows.Forms.BindingSource(this.components);
             this.phieuNhapTableAdapter = new QlvtPhanTan.DSTableAdapters.PhieuNhapTableAdapter();
             this.phieuXuatTableAdapter = new QlvtPhanTan.DSTableAdapters.PhieuXuatTableAdapter();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.cmbCN = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             labelLuong = new System.Windows.Forms.Label();
             mACNLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
@@ -120,6 +123,8 @@ namespace QlvtPhanTan
             ((System.ComponentModel.ISupportInitialize)(this.bdsPhieuXuat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDatHang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPhieuNhap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelLuong
@@ -382,6 +387,7 @@ namespace QlvtPhanTan
             // 
             // panelControl
             // 
+            this.panelControl.Controls.Add(this.panelControl1);
             this.panelControl.Controls.Add(this.cmbChiNhanh);
             this.panelControl.Controls.Add(this.labelCmbChiNhanh);
             this.panelControl.Dock = System.Windows.Forms.DockStyle.Top;
@@ -397,7 +403,7 @@ namespace QlvtPhanTan
             this.cmbChiNhanh.Name = "cmbChiNhanh";
             this.cmbChiNhanh.Size = new System.Drawing.Size(173, 24);
             this.cmbChiNhanh.TabIndex = 1;
-            this.cmbChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cmbChiNhanh_SelectedIndexChanged);
+
             // 
             // labelCmbChiNhanh
             // 
@@ -689,6 +695,34 @@ namespace QlvtPhanTan
             // 
             this.phieuXuatTableAdapter.ClearBeforeFill = true;
             // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.cmbCN);
+            this.panelControl1.Controls.Add(this.label1);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl1.Location = new System.Drawing.Point(2, 2);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(1520, 50);
+            this.panelControl1.TabIndex = 5;
+            // 
+            // cmbCN
+            // 
+            this.cmbCN.FormattingEnabled = true;
+            this.cmbCN.Location = new System.Drawing.Point(110, 14);
+            this.cmbCN.Name = "cmbCN";
+            this.cmbCN.Size = new System.Drawing.Size(173, 24);
+            this.cmbCN.TabIndex = 1;
+            this.cmbCN.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(34, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Chi nhánh";
+            // 
             // FormNhanVien
             // 
             this.Appearance.Options.UseFont = true;
@@ -727,6 +761,9 @@ namespace QlvtPhanTan
             ((System.ComponentModel.ISupportInitialize)(this.bdsPhieuXuat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDatHang)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPhieuNhap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -787,5 +824,8 @@ namespace QlvtPhanTan
         private DevExpress.XtraGrid.Columns.GridColumn colLUONG;
         private DevExpress.XtraGrid.Columns.GridColumn colMACN;
         private DevExpress.XtraGrid.Columns.GridColumn colTrangThaiXoa;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private System.Windows.Forms.ComboBox cmbCN;
+        private System.Windows.Forms.Label label1;
     }
 }
