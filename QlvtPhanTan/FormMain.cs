@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraReports.UI;
+using System;
 using System.Windows.Forms;
 
 namespace QlvtPhanTan
@@ -196,6 +197,26 @@ namespace QlvtPhanTan
             else
             {
                 FormReportNV f = new FormReportNV();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnBaoCaoVT_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            // tạo báo cáo tại đây luôn. không cần chọn chi nhánh -> vì vật tư là nhân bản. 
+            ReportVatTu rpVT = new ReportVatTu();
+            ReportPrintTool print = new ReportPrintTool(rpVT);
+            print.ShowPreviewDialog();
+        }
+
+        private void btnDDHChuaPN_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormReportDDH));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormReportDDH f = new FormReportDDH();
                 f.MdiParent = this;
                 f.Show();
             }

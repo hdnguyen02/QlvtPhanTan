@@ -124,6 +124,12 @@
     <Compile Include="FormPX.Designer.cs">
       <DependentUpon>FormPX.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReportDDH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportDDH.Designer.cs">
+      <DependentUpon>FormReportDDH.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormReportNV.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,11 +150,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportDDH.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportDDH.Designer.cs">
+      <DependentUpon>ReportDDH.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportNhanVien.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportNhanVien.Designer.cs">
       <DependentUpon>ReportNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportVatTu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportVatTu.Designer.cs">
+      <DependentUpon>ReportVatTu.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FormDDH.resx">
       <DependentUpon>FormDDH.cs</DependentUpon>
@@ -171,6 +189,9 @@
     <EmbeddedResource Include="FormPX.resx">
       <DependentUpon>FormPX.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReportDDH.resx">
+      <DependentUpon>FormReportDDH.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormReportNV.resx">
       <DependentUpon>FormReportNV.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,8 +211,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReportDDH.resx">
+      <DependentUpon>ReportDDH.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportNhanVien.resx">
       <DependentUpon>ReportNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportVatTu.resx">
+      <DependentUpon>ReportVatTu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="DS.xsc">
