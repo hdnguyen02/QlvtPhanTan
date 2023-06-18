@@ -216,7 +216,7 @@ namespace QlvtPhanTan
 
                     if (result == 1)
                     {
-                        throw new Exception("Mã phiếu xuất đã được sử dụng! Vui lòng chọn mã kho khác");
+                        throw new Exception("Mã phiếu nhập đã được sử dụng! Vui lòng chọn mã kho khác");
                     }
 
                 }
@@ -351,7 +351,6 @@ namespace QlvtPhanTan
                 MessageBox.Show("Không được phép hiệu chỉnh","",MessageBoxButtons.OK);
                 return; 
             }
-            // bật cái panel lên 
             panelNhapLieuPN.Enabled = true; // tiếp cho phép hiệu chỉnh 
             phieuNhapGridControl.Enabled = false;
             btnThemPN.Enabled = btnSua.Enabled = btnXoa.Enabled = btnThoat.Enabled = btnReload.Enabled = false;
@@ -423,17 +422,9 @@ namespace QlvtPhanTan
                 donGiaTextEdit.Text = donGia.ToString();
             }
             catch(Exception ex) { Console.WriteLine(ex.Message); }
-           
-            // làm sao có thể lấy ra giá trị tương ứng. 
-
-         
-
-
         }
 
-        // viêt 1 hàm chuẩn hóa dữ liệu đầu vào.  
-       
-
+      
 
         private void btnGhiVT_Click(object sender, EventArgs e)
         {
@@ -442,16 +433,14 @@ namespace QlvtPhanTan
                 if (dangThemMoi)
                 {
                     dangThemMoi = false;
-                  
                     DataRowCollection rows = vtpn.Rows; 
                     int slctddh = (int)rows[cmbVT.SelectedIndex]["SOLUONG"];
                     int slpn = int.Parse(SLTextEdit.Text.ToString());
-                    // so sánh tại chỗ này. 
                     if (slctddh < slpn)
                     {
                         throw new Exception("Số lượng vật tư phiếu nhập không được phép lớn hơn số lượng vật tư chi tiết đặt hàng");
                     }
-                    string strLenh = "DECLARE @RESULT INT EXEC @RESULT = spNhapVT '" + maVTTextEdit.Text + "','" + slpn.ToString() + "' " + "SELECT 'result'=@RESULT"; ;
+                    string strLenh = "DECLARE @RESULT INT EXEC @RESULT = spInsertCTPNAndUpdateSLVT '" + maPN.Text + "','" + maVTTextEdit.Text + "','" + donGiaTextEdit.Text + "','" + slpn.ToString() + "' " + "SELECT 'result'=@RESULT";
                     
                     Program.myReader = Program.ExecSqlDataReader(strLenh);
                     Program.myReader.Read();
@@ -463,22 +452,17 @@ namespace QlvtPhanTan
                     {
                         throw new Exception("Sảy ra lỗi trong quá trình thêm cập nhập số lượng tồn");
                     }
-               
+
+                    this.reloadBdsPN(); 
 
                 }
-                else // trường hợp người dùng sữa. sử lý tại chỗ này. 
-                {
-                    // trước tiên cần kiểm tra xem số lượng vừa chỉnh sữa so với hiện tại thế nào
-                 
+                else 
+                {         
                     int slvtpnSau = int.Parse(SLTextEdit.Text.ToString()); 
                     if (slvtctddh < slvtpnSau)
                     {
                         throw new Exception("Số lượng vật tư phiếu nhập không được phép lớn hơn số lượng vật tư chi tiết đặt hàng");
                     }
-
-                    // in ra hết đi.
-                    Console.WriteLine(slvtpnSau.ToString() + " slvtpnSau");
-                    Console.WriteLine(slvtpnCu.ToString() + " slvtpnCu");
 
                     if (slvtpnSau > slvtpnCu)
                     {
@@ -498,9 +482,6 @@ namespace QlvtPhanTan
                             throw new Exception("Sảy ra lỗi trong quá trình thêm cập nhập số lượng tồn");
                         }
 
-
-
-
                     }
                     else if (slvtpnCu > slvtpnSau) // nhân viên đã giảm đi số lượng, 
                     {
@@ -519,16 +500,14 @@ namespace QlvtPhanTan
                         {
                             throw new Exception("Sảy ra lỗi trong quá trình thêm cập nhập số lượng tồn");
                         }
-
                     }
-                  
-
-
+                    bdsCTPN.EndEdit();
+                    bdsCTPN.ResetCurrentItem();
+                    this.CTPNTableAdapter.Connection.ConnectionString = Program.connectStr;
+                    this.CTPNTableAdapter.Update(this.DS.CTPN);
                 }
-                bdsCTPN.EndEdit();
-                bdsCTPN.ResetCurrentItem();
-                this.CTPNTableAdapter.Connection.ConnectionString = Program.connectStr;
-                this.CTPNTableAdapter.Update(this.DS.CTPN);
+               
+                
             }
             catch (Exception ex)
             {
@@ -554,7 +533,6 @@ namespace QlvtPhanTan
             }
 
             panelNhapLieuCTPN.Enabled = true;
-
             this.slvtpnCu = int.Parse(SLTextEdit.Text.ToString());
 
             // lấy ra số lượng của thằng đó luôn.
@@ -596,25 +574,16 @@ namespace QlvtPhanTan
 
             if (MessageBox.Show("Bạn có thực muốn xóa chi tiết đơn phiếu nhập này không ?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-
-                // trước khi xóa cần cập nhập lại số lượng vật của vật tư đó 
-
-                // xóa đi tức là xuất hàng đi. Nếu đơn hàng về 0. thì không thể nào xóa đi cái nhập này. việt xóa sẽ mâu thuẫn. 
-
                 
 
                 try
                 {
-
-
                     string strLenh = "DECLARE @RESULT INT EXEC @RESULT = spXuatVT '" + maVTTextEdit.Text + "','" + SLTextEdit.Text.ToString() + "' " + "SELECT 'result'=@RESULT"; ;
                     Console.WriteLine(strLenh);
                     Program.myReader = Program.ExecSqlDataReader(strLenh);
                     Program.myReader.Read();
-
                     int result = int.Parse(Program.myReader.GetValue(0).ToString());
                     Program.myReader.Close();
-
                     if (result == 0)
                     {
                         throw new Exception("Sảy ra lỗi trong quá trình thêm cập nhập số lượng tồn");
@@ -631,6 +600,11 @@ namespace QlvtPhanTan
                     return;
                 }
             }
+        }
+
+        private void panelControl_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

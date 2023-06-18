@@ -131,9 +131,11 @@ namespace QlvtPhanTan
             catch(Exception) {}
         }
 
-        private void labelControlTenDangNhap_Click(object sender, EventArgs e)
-        {
+      
 
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Dispose(); 
         }
     }
 }

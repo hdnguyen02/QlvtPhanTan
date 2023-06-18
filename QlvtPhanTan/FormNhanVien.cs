@@ -11,6 +11,7 @@ namespace QlvtPhanTan
     {
         string maCN = "";
         int viTri = 0;
+        bool dangThemMoi = false;
   
         public FormNhanVien()
         {
@@ -47,7 +48,12 @@ namespace QlvtPhanTan
                 cmbCN.Enabled = true; 
                 btnThemNV.Enabled = btnXoaNV.Enabled = btnSuaNV.Enabled = btnGhiNV.Enabled = btnPhucHoiNV.Enabled = false;
             } 
-            else 
+            else if (Program.role == "CHINHANH")
+            {
+                cmbCN.Enabled = false;
+                btnChuyenCN.Visibility = DevExpress.XtraBars.BarItemVisibility.Always; 
+            }
+            else  // role USER
             {
                 cmbCN.Enabled = false;
             }
@@ -55,13 +61,14 @@ namespace QlvtPhanTan
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            dangThemMoi = true; 
             this.viTri = bdsNhanVien.Position;   
             this.panelNhapLieuNV.Enabled = true; 
             maNVTextBox.Enabled = true;
             bdsNhanVien.AddNew();
             maCNTextBox.Text = maCN;
             nhanVienGridControl.Enabled = false;  
-            btnThemNV.Enabled = btnXoaNV.Enabled = btnSuaNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = false; 
+            btnThemNV.Enabled = btnXoaNV.Enabled = btnSuaNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = btnChuyenCN.Enabled = false; 
             btnGhiNV.Enabled = btnPhucHoiNV.Enabled = true;
             this.trangThaiXoaCheckEdit.Checked = false;
    
@@ -69,33 +76,18 @@ namespace QlvtPhanTan
             
         }
 
-        private void nhanVienBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bdsNhanVien.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.DS);
-        }
-
-
-        private void cmbCN_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            
-        }
 
 
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
-
             if(dauVaoHopLe() == false){
                 return;
             }
 
-            /*if (btnThemNV.Enabled == false) // đang thêm nhân viên. lúc đó thằng đó cũng thêm nhân viên. 
+            if (dangThemMoi) // đang thêm nhân viên. lúc đó thằng đó cũng thêm nhân viên. 
             {
-              
+                dangThemMoi = false; 
                 String cauTruyVan =
                     "DECLARE @result int " +
                     "EXEC @result = [dbo].[spTraCuuMaNhanVien] '" +
@@ -109,18 +101,20 @@ namespace QlvtPhanTan
                 catch (Exception ex)
                 {
                     MessageBox.Show("Lỗi kiểm tra mã nhân viên\n" + ex.Message, "", MessageBoxButtons.OK);
+                    
                 }
                 Program.myReader.Read();
                 int result = int.Parse(Program.myReader.GetValue(0). ToString());
                 Program.myReader.Close();
                 if (result == 1)
                 {
+                    dangThemMoi = true;
                     MessageBox.Show("Mã nhân viên đã được sử dụng", "", MessageBoxButtons.OK);
-                    return;  // 
+                    return;  
                 }
 
     
-            }*/
+            }
             try
             {
                 bdsNhanVien.EndEdit();
@@ -130,13 +124,14 @@ namespace QlvtPhanTan
             }
             catch (Exception ex)
             {
+
                 MessageBox.Show("Lỗi Ghi nhân viên\n" + ex.Message, "", MessageBoxButtons.OK);
                 this.nhanVienTableAdapter.Fill(this.DS.NhanVien);
                 bdsNhanVien.Position = viTri;
             }
             panelNhapLieuNV.Enabled = false;
             nhanVienGridControl.Enabled = true;
-            btnThemNV.Enabled = btnXoaNV.Enabled = btnSuaNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = true;
+            btnThemNV.Enabled = btnXoaNV.Enabled = btnSuaNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = btnChuyenCN.Enabled = true;
             btnPhucHoiNV.Enabled = btnGhiNV.Enabled = false; 
         }
 
@@ -169,7 +164,7 @@ namespace QlvtPhanTan
             panelNhapLieuNV.Enabled = false;
             nhanVienGridControl.Enabled = true;
            
-            btnThemNV.Enabled = btnXoaNV.Enabled = btnSuaNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = true;
+            btnThemNV.Enabled = btnXoaNV.Enabled = btnSuaNV.Enabled = btnReloadNV.Enabled = btnThoatNV.Enabled = btnChuyenCN.Enabled = true;
             btnPhucHoiNV.Enabled = btnGhiNV.Enabled = false;
       
         }
@@ -177,12 +172,12 @@ namespace QlvtPhanTan
 
         private bool dauVaoHopLe()
         {
-            if (Regex.IsMatch(hoTextBox.Text, @"^[A-Za-z ]+$") == false)
+            if (Regex.IsMatch(hoTextBox.Text, @"^[\p{L} ]+$") == false)
             {
                 MessageBox.Show("Họ nhân viên chỉ có chữ cái và khoảng trắng", "", MessageBoxButtons.OK);
                 return false;
             }
-            if (Regex.IsMatch(tenTextBox.Text, @"^[A-Za-z ]+$") == false)
+            if (Regex.IsMatch(tenTextBox.Text, @"^[\p{L} ]+$") == false)
             {
                 MessageBox.Show("Tên nhân viên chỉ có chữ cái và khoảng trắng", "", MessageBoxButtons.OK);
                 return false;
@@ -296,6 +291,110 @@ namespace QlvtPhanTan
             this.phieuXuatTableAdapter.Fill(this.DS.PhieuXuat);
             this.datHangTableAdapter.Fill(this.DS.DatHang);
             this.phieuNhapTableAdapter.Fill(this.DS.PhieuNhap);
+        }
+
+
+        public void chuyenChiNhanh(String chiNhanh)
+        {
+    
+            if (Program.chiNhanh.Equals(chiNhanh))
+            {
+                MessageBox.Show("Hãy chọn chi nhánh khác chi nhánh bạn đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            String maChiNhanhMoi = "";
+            int viTriHienTai = bdsNhanVien.Position;
+            String maNhanVien = ((DataRowView)bdsNhanVien[viTriHienTai])["MANV"].ToString();
+
+            if (chiNhanh.Equals("1"))
+            {
+
+                maChiNhanhMoi = "CN2";
+            }
+            else if (chiNhanh.Equals("0"))
+            {
+                maChiNhanhMoi = "CN1";
+            }
+            else
+            {
+                MessageBox.Show("Mã chi nhánh không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+          
+            String cauTruyVan = "EXEC sp_ChuyenChiNhanh " + maNhanVien + ",'" + maChiNhanhMoi + "'";
+            Console.WriteLine(cauTruyVan); 
+            try
+            {
+                Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
+                MessageBox.Show("Chuyển chi nhánh thành công", "thông báo", MessageBoxButtons.OK);
+                Program.myReader.Close();
+                    
+                if (Program.myReader == null)
+                {
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("thực thi database thất bại!\n\n" + ex.Message, "thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine(ex.Message);
+                return;
+            }
+
+            this.reloadBdsNhanvien(); 
+
+
+        }
+
+        private Form CheckExists(Type ftype)
+        {
+            foreach (Form f in this.MdiChildren)
+                if (f.GetType() == ftype)
+                    return f;
+            return null;
+        }
+
+        private void btnChuyenCN_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+           
+            int viTriHienTai = bdsNhanVien.Position;
+            
+            string maNhanVien = ((DataRowView)(bdsNhanVien[viTriHienTai]))["MANV"].ToString();
+            bool trangThaiXoa = bool.Parse(((DataRowView)(bdsNhanVien[viTriHienTai]))["TrangThaiXoa"].ToString());
+
+        
+
+
+
+            if (maNhanVien == Program.userName)
+            {
+                MessageBox.Show("Không thể chuyển chính người đang đăng nhập!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+ 
+           if (trangThaiXoa == true)
+            {
+                MessageBox.Show("Nhân viên này không có ở chi nhánh này", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Form f = this.CheckExists(typeof(FormChuyenCN));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            FormChuyenCN form = new FormChuyenCN();
+            form.Show();
+
+
+            form.CNTransfer = new FormChuyenCN.MyDelegate(chuyenChiNhanh);
+
+
+            this.btnPhucHoiNV.Enabled = true;
         }
     }
 }

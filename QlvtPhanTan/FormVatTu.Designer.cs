@@ -76,7 +76,7 @@ namespace QlvtPhanTan
             this.DVT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SOLUONGTON = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControlNhapLieuVatTu = new DevExpress.XtraEditors.PanelControl();
-            this.sOLUONGTONTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.SLTon = new DevExpress.XtraEditors.TextEdit();
             this.dVTTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.tENVTTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.mAVTTextEdit = new DevExpress.XtraEditors.TextEdit();
@@ -94,7 +94,7 @@ namespace QlvtPhanTan
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlNhapLieuVatTu)).BeginInit();
             this.panelControlNhapLieuVatTu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sOLUONGTONTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SLTon.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dVTTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tENVTTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAVTTextEdit.Properties)).BeginInit();
@@ -436,7 +436,6 @@ namespace QlvtPhanTan
             this.vattuGridControl.TabIndex = 9;
             this.vattuGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            this.vattuGridControl.Click += new System.EventHandler(this.vattuGridControl_Click);
             // 
             // gridView1
             // 
@@ -491,7 +490,7 @@ namespace QlvtPhanTan
             // panelControlNhapLieuVatTu
             // 
             this.panelControlNhapLieuVatTu.Controls.Add(sOLUONGTONLabel);
-            this.panelControlNhapLieuVatTu.Controls.Add(this.sOLUONGTONTextEdit);
+            this.panelControlNhapLieuVatTu.Controls.Add(this.SLTon);
             this.panelControlNhapLieuVatTu.Controls.Add(dVTLabel);
             this.panelControlNhapLieuVatTu.Controls.Add(this.dVTTextEdit);
             this.panelControlNhapLieuVatTu.Controls.Add(tENVTLabel);
@@ -504,16 +503,16 @@ namespace QlvtPhanTan
             this.panelControlNhapLieuVatTu.Name = "panelControlNhapLieuVatTu";
             this.panelControlNhapLieuVatTu.Size = new System.Drawing.Size(1234, 315);
             this.panelControlNhapLieuVatTu.TabIndex = 10;
-            this.panelControlNhapLieuVatTu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControlNhapLieuVatTu_Paint);
             // 
-            // sOLUONGTONTextEdit
+            // SLTon
             // 
-            this.sOLUONGTONTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsVatTu, "SOLUONGTON", true));
-            this.sOLUONGTONTextEdit.Location = new System.Drawing.Point(943, 21);
-            this.sOLUONGTONTextEdit.MenuManager = this.barManager;
-            this.sOLUONGTONTextEdit.Name = "sOLUONGTONTextEdit";
-            this.sOLUONGTONTextEdit.Size = new System.Drawing.Size(125, 22);
-            this.sOLUONGTONTextEdit.TabIndex = 7;
+            this.SLTon.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsVatTu, "SOLUONGTON", true));
+            this.SLTon.Enabled = false;
+            this.SLTon.Location = new System.Drawing.Point(943, 21);
+            this.SLTon.MenuManager = this.barManager;
+            this.SLTon.Name = "SLTon";
+            this.SLTon.Size = new System.Drawing.Size(125, 22);
+            this.SLTon.TabIndex = 7;
             // 
             // dVTTextEdit
             // 
@@ -580,7 +579,7 @@ namespace QlvtPhanTan
             ((System.ComponentModel.ISupportInitialize)(this.panelControlNhapLieuVatTu)).EndInit();
             this.panelControlNhapLieuVatTu.ResumeLayout(false);
             this.panelControlNhapLieuVatTu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sOLUONGTONTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SLTon.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dVTTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tENVTTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAVTTextEdit.Properties)).EndInit();
@@ -640,6 +639,6 @@ namespace QlvtPhanTan
         private System.Windows.Forms.BindingSource bdsCTPX;
         private DSTableAdapters.CTDDHTableAdapter ctddhTableAdapter;
         private System.Windows.Forms.BindingSource bdsCTDDH;
-        private DevExpress.XtraEditors.TextEdit sOLUONGTONTextEdit;
+        private DevExpress.XtraEditors.TextEdit SLTon;
     }
 }

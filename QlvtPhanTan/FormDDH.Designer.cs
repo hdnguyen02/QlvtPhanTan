@@ -852,11 +852,11 @@ namespace QlvtPhanTan
             this.CTDDHDataGridView.DataSource = this.bdsCTDDH;
             this.CTDDHDataGridView.Dock = System.Windows.Forms.DockStyle.Right;
             this.CTDDHDataGridView.GridColor = System.Drawing.SystemColors.AppWorkspace;
-            this.CTDDHDataGridView.Location = new System.Drawing.Point(420, 321);
+            this.CTDDHDataGridView.Location = new System.Drawing.Point(470, 321);
             this.CTDDHDataGridView.Name = "CTDDHDataGridView";
             this.CTDDHDataGridView.RowHeadersWidth = 51;
             this.CTDDHDataGridView.RowTemplate.Height = 24;
-            this.CTDDHDataGridView.Size = new System.Drawing.Size(840, 358);
+            this.CTDDHDataGridView.Size = new System.Drawing.Size(790, 358);
             this.CTDDHDataGridView.TabIndex = 19;
             // 
             // dataGridViewTextBoxColumn1

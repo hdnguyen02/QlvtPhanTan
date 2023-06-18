@@ -26,11 +26,21 @@ namespace QlvtPhanTan
             this.ribbonPageNhapXuat.Visible = true; 
             if (Program.role == "CONGTY")
             {
-                this.btnTaoTaiKhoan.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+               btnTaoTaiKhoan.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                this.ribbonPageBaoCao.Visible = true;
             }
-            else if (Program.role == "CHINHANh")
+            else if (Program.role == "CHINHANH")
             {
-                this.btnTaoTaiKhoan.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                btnTaoTaiKhoan.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+
+                this.ribbonPageBaoCao.Visible = true; 
+            }
+            else
+            {
+                
+                // ẩn đi nút tạo tk. 
+                this.btnTaoTaiKhoan.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                this.ribbonPageBaoCao.Visible = false;
             }
             
             
@@ -217,6 +227,18 @@ namespace QlvtPhanTan
             else
             {
                 FormReportDDH f = new FormReportDDH();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnBCNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormReportBCNV));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormReportBCNV f = new FormReportBCNV();
                 f.MdiParent = this;
                 f.Show();
             }

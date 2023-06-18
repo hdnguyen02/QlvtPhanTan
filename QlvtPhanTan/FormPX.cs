@@ -15,7 +15,9 @@ namespace QlvtPhanTan
     public partial class FormPX : DevExpress.XtraEditors.XtraForm
     {
         bool dangThemMoi = false;
-        int viTri; 
+        int slvtcu; // chứa số lượng vt cũ khi chỉnh sữa.  
+
+        int viTri;
         public FormPX()
         {
             InitializeComponent();
@@ -38,7 +40,7 @@ namespace QlvtPhanTan
             this.vattuTableAdapter.Connection.ConnectionString = Program.connectStr;
 
 
-           
+
 
             this.vattuTableAdapter.Fill(this.DS.Vattu);
 
@@ -77,7 +79,7 @@ namespace QlvtPhanTan
 
         }
 
-       
+
 
         private void cmbKho_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -124,10 +126,8 @@ namespace QlvtPhanTan
 
             this.vattuTableAdapter.Connection.ConnectionString = Program.connectStr;
 
-
-
-
             this.vattuTableAdapter.Fill(this.DS.Vattu);
+
 
             this.hoTenNVTableAdapter.Connection.ConnectionString = Program.connectStr;
 
@@ -149,7 +149,7 @@ namespace QlvtPhanTan
 
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.Dispose(); 
+            this.Dispose();
         }
 
         private void btnThemPX_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -157,15 +157,15 @@ namespace QlvtPhanTan
             dangThemMoi = true;
             viTri = bdsPX.Position;
             bdsPX.AddNew();
- 
-           
+
+
 
             ngayDateEdit.DateTime = DateTime.Now;
 
 
-            
 
-          
+
+
 
 
 
@@ -174,7 +174,7 @@ namespace QlvtPhanTan
             phieuXuatGridControl.Enabled = false;
             btnThemPX.Enabled = btnSua.Enabled = btnXoa.Enabled = btnThoat.Enabled = btnReload.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = true;
-            maPXTextEdit.Enabled = true;
+            maPX.Enabled = true;
             ngayDateEdit.Enabled = true;
 
         }
@@ -191,9 +191,9 @@ namespace QlvtPhanTan
             phieuXuatGridControl.Enabled = false;
             btnThemPX.Enabled = btnSua.Enabled = btnXoa.Enabled = btnThoat.Enabled = btnReload.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = true;
-            maPXTextEdit.Enabled = false;
+            maPX.Enabled = false;
             ngayDateEdit.Enabled = false;
-          
+
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -205,10 +205,10 @@ namespace QlvtPhanTan
             }
 
             // kiem tra ho ten co ton tai chu so hay khong. 
-            if (Regex.IsMatch(hOTENKHTextEdit.Text, @"^[A-Za-z ]+$") == false)
+            if (Regex.IsMatch(hOTENKHTextEdit.Text, @"^[\p{L} ]+$") == false)
             {
                 MessageBox.Show("Họ tên khách hàng chỉ có chữ cái và khoảng trắng", "", MessageBoxButtons.OK);
-                return; 
+                return;
             }
 
             try
@@ -217,7 +217,7 @@ namespace QlvtPhanTan
                 if (dangThemMoi)
                 {
                     dangThemMoi = false;
-                    string strLenh = "declare @result int exec @result = spKiemTraMaPhieuXuat '" + maPXTextEdit.Text + "' select @result";
+                    string strLenh = "declare @result int exec @result = spKiemTraMaPhieuXuat '" + maPX.Text + "' select @result";
 
                     Program.myReader = Program.ExecSqlDataReader(strLenh);
                     Program.myReader.Read();
@@ -250,7 +250,7 @@ namespace QlvtPhanTan
             btnThemPX.Enabled = btnSua.Enabled = btnXoa.Enabled = btnThoat.Enabled = btnReload.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
         }
-        
+
 
         // reload 2 bds. 
 
@@ -273,7 +273,7 @@ namespace QlvtPhanTan
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            reload(); 
+            reload();
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -284,7 +284,7 @@ namespace QlvtPhanTan
                 return;
             }
 
-         
+
 
 
             if (bdsCTPX.Count > 0)
@@ -322,13 +322,193 @@ namespace QlvtPhanTan
                 reload();
             }
             bdsPX.CancelEdit();
-           
+
 
             panelNhapLieuPX.Enabled = false;
             phieuXuatGridControl.Enabled = true;
 
             btnThemPX.Enabled = btnSua.Enabled = btnXoa.Enabled = btnThoat.Enabled = btnReload.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
+        }
+
+        private void panelNhapLieuCTPX_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnThemVT_Click(object sender, EventArgs e)
+        {
+            if (ngayDateEdit.DateTime != DateTime.Now.Date)
+            {
+                MessageBox.Show("Không được phép thao tác", "", MessageBoxButtons.OK);
+                return;
+            }
+
+            dangThemMoi = true;
+            cmbVT.Visible = true;
+
+
+            bdsCTPX.AddNew();
+            mAPXTextEdit.Text = maPX.Text;
+
+            panelNhapLieuCTPX.Enabled = true;
+            mAPXTextEdit.Enabled = false;
+
+            btnGhiVT.Enabled = btnPH.Enabled = true;
+            btnThemVT.Enabled = btnXoaVT.Enabled = btnSuaVT.Enabled = false;
+            btnThemPX.Enabled = btnXoa.Enabled = btnSua.Enabled = btnReload.Enabled = false;
+
+        }
+
+        private void cmbVT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbVT.SelectedValue.ToString() == "System.Data.DataRowView") return;
+                maVT.Text = cmbVT.SelectedValue.ToString();
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+        }
+
+        private void btnGhiVT_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (dangThemMoi)
+                {
+                    dangThemMoi = false;
+                    string strLenh = "DECLARE @RESULT INT EXEC @RESULT = spInsertCTPXAndUpdateSLVT '" + maPX.Text + "','" + maVT.Text + "','" + dONGIATextEdit.Text + "','" + soLuongVT.Text + "' " + "SELECT 'result'=@RESULT";
+
+                    Program.myReader = Program.ExecSqlDataReader(strLenh);
+                    Program.myReader.Read();
+
+                    int result = int.Parse(Program.myReader.GetValue(0).ToString());
+                    Program.myReader.Close();
+
+                    if (result == 0)
+                    {
+                        throw new Exception("Sảy ra lỗi trong quá trình thêm vật tư phiếu xuất");
+                    }
+                    reload();
+
+
+
+                }
+                else
+                {
+                    int slvtpnSau = int.Parse(soLuongVT.Text.ToString()); // lây sau khic hỉnh sưa . 
+                   
+
+                    if (slvtpnSau > slvtcu) // xuất ra nhiều hơn. 
+                    {
+                        // trừ thêm 
+                        int temp = slvtpnSau - slvtcu;
+
+                        string strLenh = "DECLARE @RESULT INT EXEC @RESULT = spXuatVT '" + maVT.Text + "','" + temp.ToString() + "' " + "SELECT 'result'=@RESULT"; ;
+                        Console.WriteLine(strLenh);
+                        Program.myReader = Program.ExecSqlDataReader(strLenh);
+                        Program.myReader.Read();
+
+                        int result = int.Parse(Program.myReader.GetValue(0).ToString());
+                        Program.myReader.Close();
+
+                        if (result == 0)
+                        {
+                            throw new Exception("Sảy ra lỗi trong quá trình thêm cập nhập số lượng tồn");
+                        }
+
+                    }
+                    else if (slvtcu > slvtpnSau) // xuất ít đi. 
+                    {
+                        // cộng thêm vào số lượng. 
+                        int temp = slvtcu - slvtpnSau;
+
+                        string strLenh = "DECLARE @RESULT INT EXEC @RESULT = spNhapVT '" + maVT.Text + "','" + temp.ToString() + "' " + "SELECT 'result'=@RESULT"; 
+                        Console.WriteLine(strLenh);
+                        Program.myReader = Program.ExecSqlDataReader(strLenh);
+                        Program.myReader.Read();
+
+                        int result = int.Parse(Program.myReader.GetValue(0).ToString());
+                        Program.myReader.Close();
+
+                        if (result == 0)
+                        {
+                            throw new Exception("Sảy ra lỗi trong quá trình thêm cập nhập số lượng tồn");
+                        }
+                    }
+                    bdsCTPX.EndEdit();
+                    bdsCTPX.ResetCurrentItem();
+                    this.CTPXTableAdapter.Connection.ConnectionString = Program.connectStr;
+                    this.CTPXTableAdapter.Update(this.DS.CTPX);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi Ghi chi tiết phiếu xuất\n" + ex.Message, "", MessageBoxButtons.OK);
+                this.CTPXTableAdapter.Fill(this.DS.CTPX);
+            }
+
+            btnGhiVT.Enabled = btnPH.Enabled = false;
+            btnThemVT.Enabled = btnXoaVT.Enabled = btnSuaVT.Enabled = true;
+
+            btnThemPX.Enabled = btnXoa.Enabled = btnSua.Enabled = btnReload.Enabled = true;
+            panelNhapLieuCTPX.Enabled = false;
+            cmbVT.Visible = false;
+        }
+
+        private void btnSuaVT_Click(object sender, EventArgs e)
+        {
+
+            if (ngayDateEdit.DateTime != DateTime.Now.Date)
+            {
+                MessageBox.Show("Không được phép thao tác", "", MessageBoxButtons.OK);
+                return;
+            }
+            panelNhapLieuCTPX.Enabled = true;
+            this.slvtcu = int.Parse(soLuongVT.Text.ToString());
+            btnGhiVT.Enabled = btnPH.Enabled = true;
+            btnThemVT.Enabled = btnXoaVT.Enabled = btnSuaVT.Enabled = false;
+            btnThemPX.Enabled = btnXoa.Enabled = btnSua.Enabled = btnReload.Enabled = false;
+
+        }
+
+        private void btnXoaVT_Click(object sender, EventArgs e)
+        {
+            if (ngayDateEdit.DateTime != DateTime.Now.Date)
+            {
+                MessageBox.Show("Không được phép thao tác", "", MessageBoxButtons.OK);
+                return;
+            }
+
+
+            if (MessageBox.Show("Bạn có thực muốn xóa chi tiết đơn phiếu xuất này không ?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                try
+                {
+                    string strLenh = "DECLARE @RESULT INT EXEC @RESULT = spNhapVT '" + maVT.Text + "','" + soLuongVT.Text.ToString() + "' " + "SELECT 'result'=@RESULT"; ;
+                    Console.WriteLine(strLenh);
+                    Program.myReader = Program.ExecSqlDataReader(strLenh);
+                    Program.myReader.Read();
+                    int result = int.Parse(Program.myReader.GetValue(0).ToString());
+                    Program.myReader.Close();
+                    if (result == 0)
+                    {
+                        throw new Exception("Sảy ra lỗi trong quá trình thêm cập nhập số lượng tồn");
+                    }
+
+                    bdsCTPX.RemoveCurrent();
+                    this.CTPXTableAdapter.Connection.ConnectionString = Program.connectStr;
+                    this.CTPXTableAdapter.Update(this.DS.CTPX);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa chi tiết phiếu nhập. Bạn hãy xóa lại\n" + ex.Message, "", MessageBoxButtons.OK);
+                    this.CTPXTableAdapter.Fill(this.DS.CTPX);
+                    return;
+                }
+            }
         }
     }
 }

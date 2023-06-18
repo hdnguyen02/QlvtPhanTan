@@ -54,48 +54,54 @@ namespace QlvtPhanTan
             // 
             // labelControlChiNhanh
             // 
-            this.labelControlChiNhanh.Appearance.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlChiNhanh.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControlChiNhanh.Appearance.Options.UseFont = true;
-            this.labelControlChiNhanh.Location = new System.Drawing.Point(35, 29);
+            this.labelControlChiNhanh.Location = new System.Drawing.Point(35, 44);
             this.labelControlChiNhanh.Margin = new System.Windows.Forms.Padding(4);
             this.labelControlChiNhanh.Name = "labelControlChiNhanh";
-            this.labelControlChiNhanh.Size = new System.Drawing.Size(67, 19);
+            this.labelControlChiNhanh.Size = new System.Drawing.Size(82, 22);
             this.labelControlChiNhanh.TabIndex = 0;
             this.labelControlChiNhanh.Text = "Chi nhánh";
             // 
             // comboBoxChiNhanh
             // 
+            this.comboBoxChiNhanh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxChiNhanh.FormattingEnabled = true;
-            this.comboBoxChiNhanh.Location = new System.Drawing.Point(50, 65);
+            this.comboBoxChiNhanh.Location = new System.Drawing.Point(35, 69);
             this.comboBoxChiNhanh.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxChiNhanh.Name = "comboBoxChiNhanh";
-            this.comboBoxChiNhanh.Size = new System.Drawing.Size(253, 28);
+            this.comboBoxChiNhanh.Size = new System.Drawing.Size(353, 30);
             this.comboBoxChiNhanh.TabIndex = 1;
             this.comboBoxChiNhanh.SelectedIndexChanged += new System.EventHandler(this.comboBoxChiNhanh_SelectedIndexChanged);
             // 
             // labelControlTenDangNhap
             // 
-            this.labelControlTenDangNhap.Location = new System.Drawing.Point(33, 115);
+            this.labelControlTenDangNhap.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlTenDangNhap.Appearance.Options.UseFont = true;
+            this.labelControlTenDangNhap.Location = new System.Drawing.Point(33, 113);
             this.labelControlTenDangNhap.Margin = new System.Windows.Forms.Padding(4);
             this.labelControlTenDangNhap.Name = "labelControlTenDangNhap";
-            this.labelControlTenDangNhap.Size = new System.Drawing.Size(59, 17);
+            this.labelControlTenDangNhap.Size = new System.Drawing.Size(83, 24);
             this.labelControlTenDangNhap.TabIndex = 2;
             this.labelControlTenDangNhap.Text = "Tài khoản";
-            this.labelControlTenDangNhap.Click += new System.EventHandler(this.labelControlTenDangNhap_Click);
             // 
             // textEditTenDangNhap
             // 
             this.textEditTenDangNhap.EditValue = "";
-            this.textEditTenDangNhap.Location = new System.Drawing.Point(33, 140);
+            this.textEditTenDangNhap.Location = new System.Drawing.Point(33, 138);
             this.textEditTenDangNhap.Margin = new System.Windows.Forms.Padding(4);
             this.textEditTenDangNhap.Name = "textEditTenDangNhap";
-            this.textEditTenDangNhap.Size = new System.Drawing.Size(355, 22);
+            this.textEditTenDangNhap.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEditTenDangNhap.Properties.Appearance.Options.UseFont = true;
+            this.textEditTenDangNhap.Size = new System.Drawing.Size(355, 28);
             this.textEditTenDangNhap.TabIndex = 3;
             // 
             // labelControlMatKhau
             // 
+            this.labelControlMatKhau.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlMatKhau.Appearance.Options.UseFont = true;
             this.labelControlMatKhau.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControlMatKhau.Location = new System.Drawing.Point(33, 182);
+            this.labelControlMatKhau.Location = new System.Drawing.Point(33, 187);
             this.labelControlMatKhau.Margin = new System.Windows.Forms.Padding(4);
             this.labelControlMatKhau.Name = "labelControlMatKhau";
             this.labelControlMatKhau.Size = new System.Drawing.Size(84, 21);
@@ -107,12 +113,16 @@ namespace QlvtPhanTan
             this.textEditMatKhau.Location = new System.Drawing.Point(33, 211);
             this.textEditMatKhau.Margin = new System.Windows.Forms.Padding(4);
             this.textEditMatKhau.Name = "textEditMatKhau";
+            this.textEditMatKhau.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEditMatKhau.Properties.Appearance.Options.UseFont = true;
             this.textEditMatKhau.Properties.PasswordChar = '*';
-            this.textEditMatKhau.Size = new System.Drawing.Size(355, 22);
+            this.textEditMatKhau.Size = new System.Drawing.Size(355, 28);
             this.textEditMatKhau.TabIndex = 5;
             // 
             // btnDangNhap
             // 
+            this.btnDangNhap.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDangNhap.Appearance.Options.UseFont = true;
             this.btnDangNhap.Location = new System.Drawing.Point(33, 280);
             this.btnDangNhap.Margin = new System.Windows.Forms.Padding(4);
             this.btnDangNhap.Name = "btnDangNhap";
@@ -123,12 +133,15 @@ namespace QlvtPhanTan
             // 
             // btnThoat
             // 
+            this.btnThoat.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThoat.Appearance.Options.UseFont = true;
             this.btnThoat.Location = new System.Drawing.Point(254, 280);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(134, 36);
             this.btnThoat.TabIndex = 7;
             this.btnThoat.Text = "Thoát";
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // FormDangNhap
             // 

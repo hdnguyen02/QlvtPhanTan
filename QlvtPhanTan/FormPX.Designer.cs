@@ -89,21 +89,27 @@ namespace QlvtPhanTan
             this.maNVTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.hOTENKHTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.ngayDateEdit = new DevExpress.XtraEditors.DateEdit();
-            this.maPXTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.maPX = new DevExpress.XtraEditors.TextEdit();
             this.panelNhapLieuCTPX = new DevExpress.XtraEditors.PanelControl();
-            this.mAVTTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.maVT = new DevExpress.XtraEditors.TextEdit();
             this.bdsCTPX = new System.Windows.Forms.BindingSource(this.components);
             this.cmbVT = new System.Windows.Forms.ComboBox();
             this.bdsVatTu = new System.Windows.Forms.BindingSource(this.components);
             this.dONGIATextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.sOLUONGTextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.mAPXTextEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.soLuongVT = new DevExpress.XtraEditors.TextEdit();
+            this.mAPXTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.hoTenNVTableAdapter = new QlvtPhanTan.DSTableAdapters.HoTenNVTableAdapter();
             this.CTPXDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnThemVT = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnXoaVT = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSuaVT = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnGhiVT = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnPH = new System.Windows.Forms.ToolStripMenuItem();
             mAPXLabel = new System.Windows.Forms.Label();
             nGAYLabel = new System.Windows.Forms.Label();
             hOTENKHLabel = new System.Windows.Forms.Label();
@@ -130,16 +136,17 @@ namespace QlvtPhanTan
             ((System.ComponentModel.ISupportInitialize)(this.hOTENKHTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ngayDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ngayDateEdit.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maPXTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maPX.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelNhapLieuCTPX)).BeginInit();
             this.panelNhapLieuCTPX.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mAVTTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maVT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCTPX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsVatTu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dONGIATextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sOLUONGTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mAPXTextEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.soLuongVT.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAPXTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CTPXDataGridView)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mAPXLabel
@@ -578,7 +585,7 @@ namespace QlvtPhanTan
             this.panelNhapLieuPX.Controls.Add(nGAYLabel);
             this.panelNhapLieuPX.Controls.Add(this.ngayDateEdit);
             this.panelNhapLieuPX.Controls.Add(mAPXLabel);
-            this.panelNhapLieuPX.Controls.Add(this.maPXTextEdit);
+            this.panelNhapLieuPX.Controls.Add(this.maPX);
             this.panelNhapLieuPX.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelNhapLieuPX.Enabled = false;
             this.panelNhapLieuPX.Location = new System.Drawing.Point(0, 321);
@@ -681,43 +688,44 @@ namespace QlvtPhanTan
             this.ngayDateEdit.Size = new System.Drawing.Size(125, 22);
             this.ngayDateEdit.TabIndex = 3;
             // 
-            // maPXTextEdit
+            // maPX
             // 
-            this.maPXTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPX, "MAPX", true));
-            this.maPXTextEdit.Location = new System.Drawing.Point(73, 34);
-            this.maPXTextEdit.MenuManager = this.barManager;
-            this.maPXTextEdit.Name = "maPXTextEdit";
-            this.maPXTextEdit.Size = new System.Drawing.Size(125, 22);
-            this.maPXTextEdit.TabIndex = 1;
+            this.maPX.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPX, "MAPX", true));
+            this.maPX.Location = new System.Drawing.Point(73, 34);
+            this.maPX.MenuManager = this.barManager;
+            this.maPX.Name = "maPX";
+            this.maPX.Size = new System.Drawing.Size(125, 22);
+            this.maPX.TabIndex = 1;
             // 
             // panelNhapLieuCTPX
             // 
             this.panelNhapLieuCTPX.Controls.Add(mAVTLabel);
-            this.panelNhapLieuCTPX.Controls.Add(this.mAVTTextEdit);
+            this.panelNhapLieuCTPX.Controls.Add(this.maVT);
             this.panelNhapLieuCTPX.Controls.Add(label2);
             this.panelNhapLieuCTPX.Controls.Add(this.cmbVT);
             this.panelNhapLieuCTPX.Controls.Add(dONGIALabel);
             this.panelNhapLieuCTPX.Controls.Add(this.dONGIATextEdit);
             this.panelNhapLieuCTPX.Controls.Add(sOLUONGLabel);
-            this.panelNhapLieuCTPX.Controls.Add(this.sOLUONGTextEdit);
+            this.panelNhapLieuCTPX.Controls.Add(this.soLuongVT);
             this.panelNhapLieuCTPX.Controls.Add(mAPXLabel1);
-            this.panelNhapLieuCTPX.Controls.Add(this.mAPXTextEdit1);
+            this.panelNhapLieuCTPX.Controls.Add(this.mAPXTextEdit);
             this.panelNhapLieuCTPX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelNhapLieuCTPX.Enabled = false;
             this.panelNhapLieuCTPX.Location = new System.Drawing.Point(500, 321);
             this.panelNhapLieuCTPX.Name = "panelNhapLieuCTPX";
             this.panelNhapLieuCTPX.Size = new System.Drawing.Size(1440, 486);
             this.panelNhapLieuCTPX.TabIndex = 14;
+            this.panelNhapLieuCTPX.Paint += new System.Windows.Forms.PaintEventHandler(this.panelNhapLieuCTPX_Paint);
             // 
-            // mAVTTextEdit
+            // maVT
             // 
-            this.mAVTTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsCTPX, "MAVT", true));
-            this.mAVTTextEdit.Enabled = false;
-            this.mAVTTextEdit.Location = new System.Drawing.Point(336, 144);
-            this.mAVTTextEdit.MenuManager = this.barManager;
-            this.mAVTTextEdit.Name = "mAVTTextEdit";
-            this.mAVTTextEdit.Size = new System.Drawing.Size(125, 22);
-            this.mAVTTextEdit.TabIndex = 12;
+            this.maVT.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsCTPX, "MAVT", true));
+            this.maVT.Enabled = false;
+            this.maVT.Location = new System.Drawing.Point(336, 144);
+            this.maVT.MenuManager = this.barManager;
+            this.maVT.Name = "maVT";
+            this.maVT.Size = new System.Drawing.Size(125, 22);
+            this.maVT.TabIndex = 12;
             // 
             // bdsCTPX
             // 
@@ -735,6 +743,7 @@ namespace QlvtPhanTan
             this.cmbVT.Size = new System.Drawing.Size(121, 24);
             this.cmbVT.TabIndex = 8;
             this.cmbVT.ValueMember = "MAVT";
+            this.cmbVT.SelectedIndexChanged += new System.EventHandler(this.cmbVT_SelectedIndexChanged);
             // 
             // bdsVatTu
             // 
@@ -750,23 +759,23 @@ namespace QlvtPhanTan
             this.dONGIATextEdit.Size = new System.Drawing.Size(125, 22);
             this.dONGIATextEdit.TabIndex = 7;
             // 
-            // sOLUONGTextEdit
+            // soLuongVT
             // 
-            this.sOLUONGTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsCTPX, "SOLUONG", true));
-            this.sOLUONGTextEdit.Location = new System.Drawing.Point(91, 214);
-            this.sOLUONGTextEdit.MenuManager = this.barManager;
-            this.sOLUONGTextEdit.Name = "sOLUONGTextEdit";
-            this.sOLUONGTextEdit.Size = new System.Drawing.Size(125, 22);
-            this.sOLUONGTextEdit.TabIndex = 5;
+            this.soLuongVT.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsCTPX, "SOLUONG", true));
+            this.soLuongVT.Location = new System.Drawing.Point(91, 214);
+            this.soLuongVT.MenuManager = this.barManager;
+            this.soLuongVT.Name = "soLuongVT";
+            this.soLuongVT.Size = new System.Drawing.Size(125, 22);
+            this.soLuongVT.TabIndex = 5;
             // 
-            // mAPXTextEdit1
+            // mAPXTextEdit
             // 
-            this.mAPXTextEdit1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsCTPX, "MAPX", true));
-            this.mAPXTextEdit1.Location = new System.Drawing.Point(90, 69);
-            this.mAPXTextEdit1.MenuManager = this.barManager;
-            this.mAPXTextEdit1.Name = "mAPXTextEdit1";
-            this.mAPXTextEdit1.Size = new System.Drawing.Size(125, 22);
-            this.mAPXTextEdit1.TabIndex = 1;
+            this.mAPXTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsCTPX, "MAPX", true));
+            this.mAPXTextEdit.Location = new System.Drawing.Point(90, 69);
+            this.mAPXTextEdit.MenuManager = this.barManager;
+            this.mAPXTextEdit.Name = "mAPXTextEdit";
+            this.mAPXTextEdit.Size = new System.Drawing.Size(125, 22);
+            this.mAPXTextEdit.TabIndex = 1;
             // 
             // hoTenNVTableAdapter
             // 
@@ -783,6 +792,7 @@ namespace QlvtPhanTan
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
+            this.CTPXDataGridView.ContextMenuStrip = this.contextMenuStrip1;
             this.CTPXDataGridView.DataSource = this.bdsCTPX;
             this.CTPXDataGridView.Dock = System.Windows.Forms.DockStyle.Right;
             this.CTPXDataGridView.Location = new System.Drawing.Point(1140, 321);
@@ -829,6 +839,52 @@ namespace QlvtPhanTan
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.Width = 200;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnThemVT,
+            this.btnXoaVT,
+            this.btnSuaVT,
+            this.btnGhiVT,
+            this.btnPH});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 152);
+            // 
+            // btnThemVT
+            // 
+            this.btnThemVT.Name = "btnThemVT";
+            this.btnThemVT.Size = new System.Drawing.Size(157, 24);
+            this.btnThemVT.Text = "Thêm vật tư";
+            this.btnThemVT.Click += new System.EventHandler(this.btnThemVT_Click);
+            // 
+            // btnXoaVT
+            // 
+            this.btnXoaVT.Name = "btnXoaVT";
+            this.btnXoaVT.Size = new System.Drawing.Size(210, 24);
+            this.btnXoaVT.Text = "Xóa vật tư";
+            this.btnXoaVT.Click += new System.EventHandler(this.btnXoaVT_Click);
+            // 
+            // btnSuaVT
+            // 
+            this.btnSuaVT.Name = "btnSuaVT";
+            this.btnSuaVT.Size = new System.Drawing.Size(157, 24);
+            this.btnSuaVT.Text = "Sữa vật tư";
+            this.btnSuaVT.Click += new System.EventHandler(this.btnSuaVT_Click);
+            // 
+            // btnGhiVT
+            // 
+            this.btnGhiVT.Name = "btnGhiVT";
+            this.btnGhiVT.Size = new System.Drawing.Size(157, 24);
+            this.btnGhiVT.Text = "Ghi";
+            this.btnGhiVT.Click += new System.EventHandler(this.btnGhiVT_Click);
+            // 
+            // btnPH
+            // 
+            this.btnPH.Name = "btnPH";
+            this.btnPH.Size = new System.Drawing.Size(157, 24);
+            this.btnPH.Text = "Phục hồi";
+            // 
             // FormPX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -865,17 +921,18 @@ namespace QlvtPhanTan
             ((System.ComponentModel.ISupportInitialize)(this.hOTENKHTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ngayDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ngayDateEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maPXTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maPX.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelNhapLieuCTPX)).EndInit();
             this.panelNhapLieuCTPX.ResumeLayout(false);
             this.panelNhapLieuCTPX.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mAVTTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maVT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCTPX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsVatTu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dONGIATextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sOLUONGTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mAPXTextEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.soLuongVT.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAPXTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CTPXDataGridView)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -927,7 +984,7 @@ namespace QlvtPhanTan
         private DevExpress.XtraEditors.TextEdit maNVTextEdit;
         private DevExpress.XtraEditors.TextEdit hOTENKHTextEdit;
         private DevExpress.XtraEditors.DateEdit ngayDateEdit;
-        private DevExpress.XtraEditors.TextEdit maPXTextEdit;
+        private DevExpress.XtraEditors.TextEdit maPX;
         private DSTableAdapters.KhoTableAdapter khoTableAdapter;
         private System.Windows.Forms.BindingSource bdsKho;
         private System.Windows.Forms.BindingSource bdsNV;
@@ -936,15 +993,21 @@ namespace QlvtPhanTan
         private System.Windows.Forms.BindingSource bdsCTPX;
         private System.Windows.Forms.DataGridView CTPXDataGridView;
         private System.Windows.Forms.ComboBox cmbVT;
-        private DevExpress.XtraEditors.TextEdit mAPXTextEdit1;
+        private DevExpress.XtraEditors.TextEdit mAPXTextEdit;
         private DSTableAdapters.VattuTableAdapter vattuTableAdapter;
         private System.Windows.Forms.BindingSource bdsVatTu;
-        private DevExpress.XtraEditors.TextEdit mAVTTextEdit;
+        private DevExpress.XtraEditors.TextEdit maVT;
         private DevExpress.XtraEditors.TextEdit dONGIATextEdit;
-        private DevExpress.XtraEditors.TextEdit sOLUONGTextEdit;
+        private DevExpress.XtraEditors.TextEdit soLuongVT;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem btnThemVT;
+        private System.Windows.Forms.ToolStripMenuItem btnSuaVT;
+        private System.Windows.Forms.ToolStripMenuItem btnXoaVT;
+        private System.Windows.Forms.ToolStripMenuItem btnGhiVT;
+        private System.Windows.Forms.ToolStripMenuItem btnPH;
     }
 }

@@ -15,7 +15,6 @@ namespace QlvtPhanTan
     {
 
         int viTri;
-
         public FormVatTu()
         {
             InitializeComponent();
@@ -56,35 +55,16 @@ namespace QlvtPhanTan
 
         }
 
-        private void cmbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
- 
-        private void panelControlNhapLieuVatTu_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void vattuGridControl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        // viết 1 sp kiểm tra xem có tồn tại hay mã vật tư hay chưa, 
 
      
 
         private void btnThemVT_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-          
             this.viTri = bdsVatTu.Position;
             this.panelControlNhapLieuVatTu.Enabled = true;
             mAVTTextEdit.Enabled = true;
             bdsVatTu.AddNew();
+            SLTon.Text = "0"; 
  
             vattuGridControl.Enabled = false;
             btnThemVT.Enabled = btnXoaVT.Enabled = btnHieuChinhVT.Enabled = btnReloadVT.Enabled = btnThoatVT.Enabled = false;
@@ -93,20 +73,13 @@ namespace QlvtPhanTan
 
         private void btnGhiVT_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            /* if (dangThemMoi)
-             {
-                 dangThemMoi = false; 
-                 // kiểm tra xem mã vật tư đã tồn tại hay chưa. 
-
-             }*/
-
-            // ghi lại. 
+          
             try
             {
                 bdsVatTu.EndEdit();
                 bdsVatTu.ResetCurrentItem();
                 this.vatTuTableAdapter.Connection.ConnectionString = Program.connectStr;
-                this.vatTuTableAdapter.Update(this.DS.Vattu);
+                this.vatTuTableAdapter.Update(this.DS.Vattu); 
             }
             catch (Exception ex)
             {
@@ -115,10 +88,12 @@ namespace QlvtPhanTan
                 bdsVatTu.Position = viTri;
      
             }
+
             panelControlNhapLieuVatTu.Enabled = false;
             vattuGridControl.Enabled = true;
             btnThemVT.Enabled = btnXoaVT.Enabled = btnHieuChinhVT.Enabled = btnReloadVT.Enabled = btnThoatVT.Enabled = true;
             btnPhucHoiVT.Enabled = btnGhiVT.Enabled = false;
+
         }
 
         private void btnHieuChinhVT_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

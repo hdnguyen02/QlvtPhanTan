@@ -49,6 +49,7 @@ namespace QlvtPhanTan
             this.btnGhiNV = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoiNV = new DevExpress.XtraBars.BarButtonItem();
             this.btnReloadNV = new DevExpress.XtraBars.BarButtonItem();
+            this.btnChuyenCN = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoatNV = new DevExpress.XtraBars.BarButtonItem();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.bar3 = new DevExpress.XtraBars.Bar();
@@ -59,6 +60,9 @@ namespace QlvtPhanTan
             this.btnHieuChinh = new DevExpress.XtraBars.BarButtonItem();
             this.btnHieuChinhDDH = new DevExpress.XtraBars.BarButtonItem();
             this.panelControl = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.cmbCN = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.cmbChiNhanh = new System.Windows.Forms.ComboBox();
             this.labelCmbChiNhanh = new System.Windows.Forms.Label();
             this.virtualServerModeSource1 = new DevExpress.Data.VirtualServerModeSource(this.components);
@@ -93,9 +97,7 @@ namespace QlvtPhanTan
             this.bdsPhieuNhap = new System.Windows.Forms.BindingSource(this.components);
             this.phieuNhapTableAdapter = new QlvtPhanTan.DSTableAdapters.PhieuNhapTableAdapter();
             this.phieuXuatTableAdapter = new QlvtPhanTan.DSTableAdapters.PhieuXuatTableAdapter();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.cmbCN = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.unboundSource1 = new DevExpress.Data.UnboundSource(this.components);
             labelLuong = new System.Windows.Forms.Label();
             mACNLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
@@ -108,6 +110,8 @@ namespace QlvtPhanTan
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl)).BeginInit();
             this.panelControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsNhanVien)).BeginInit();
@@ -123,8 +127,7 @@ namespace QlvtPhanTan
             ((System.ComponentModel.ISupportInitialize)(this.bdsPhieuXuat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDatHang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPhieuNhap)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.unboundSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelLuong
@@ -229,9 +232,10 @@ namespace QlvtPhanTan
             this.btnReloadNV,
             this.btnThoatNV,
             this.btnHieuChinhDDH,
-            this.btnSuaNV});
+            this.btnSuaNV,
+            this.btnChuyenCN});
             this.barManager.MainMenu = this.bar2;
-            this.barManager.MaxItemId = 13;
+            this.barManager.MaxItemId = 14;
             this.barManager.StatusBar = this.bar3;
             // 
             // bar1
@@ -249,6 +253,7 @@ namespace QlvtPhanTan
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhiNV, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoiNV, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnReloadNV, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnChuyenCN, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThoatNV, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar1.Text = "Tools";
             // 
@@ -275,7 +280,7 @@ namespace QlvtPhanTan
             // 
             // btnSuaNV
             // 
-            this.btnSuaNV.Caption = "Sữa";
+            this.btnSuaNV.Caption = "Hiệu chỉnh";
             this.btnSuaNV.Id = 11;
             this.btnSuaNV.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSuaNV.ImageOptions.SvgImage")));
             this.btnSuaNV.Name = "btnSuaNV";
@@ -306,6 +311,15 @@ namespace QlvtPhanTan
             this.btnReloadNV.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnReloadNV.ImageOptions.SvgImage")));
             this.btnReloadNV.Name = "btnReloadNV";
             this.btnReloadNV.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReloadNV_ItemClick);
+            // 
+            // btnChuyenCN
+            // 
+            this.btnChuyenCN.Caption = "Chuyển chi nhánh";
+            this.btnChuyenCN.Id = 13;
+            this.btnChuyenCN.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnChuyenCN.ImageOptions.SvgImage")));
+            this.btnChuyenCN.Name = "btnChuyenCN";
+            this.btnChuyenCN.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btnChuyenCN.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChuyenCN_ItemClick);
             // 
             // btnThoatNV
             // 
@@ -396,6 +410,34 @@ namespace QlvtPhanTan
             this.panelControl.Size = new System.Drawing.Size(1524, 50);
             this.panelControl.TabIndex = 4;
             // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.cmbCN);
+            this.panelControl1.Controls.Add(this.label1);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl1.Location = new System.Drawing.Point(2, 2);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(1520, 50);
+            this.panelControl1.TabIndex = 5;
+            // 
+            // cmbCN
+            // 
+            this.cmbCN.FormattingEnabled = true;
+            this.cmbCN.Location = new System.Drawing.Point(110, 14);
+            this.cmbCN.Name = "cmbCN";
+            this.cmbCN.Size = new System.Drawing.Size(173, 24);
+            this.cmbCN.TabIndex = 1;
+            this.cmbCN.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(34, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Chi nhánh";
+            // 
             // cmbChiNhanh
             // 
             this.cmbChiNhanh.FormattingEnabled = true;
@@ -403,7 +445,6 @@ namespace QlvtPhanTan
             this.cmbChiNhanh.Name = "cmbChiNhanh";
             this.cmbChiNhanh.Size = new System.Drawing.Size(173, 24);
             this.cmbChiNhanh.TabIndex = 1;
-
             // 
             // labelCmbChiNhanh
             // 
@@ -452,7 +493,7 @@ namespace QlvtPhanTan
             this.nhanVienGridControl.MainView = this.gridView1;
             this.nhanVienGridControl.MenuManager = this.barManager;
             this.nhanVienGridControl.Name = "nhanVienGridControl";
-            this.nhanVienGridControl.Size = new System.Drawing.Size(1524, 446);
+            this.nhanVienGridControl.Size = new System.Drawing.Size(1524, 562);
             this.nhanVienGridControl.TabIndex = 9;
             this.nhanVienGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -477,81 +518,90 @@ namespace QlvtPhanTan
             this.colMANV.FieldName = "MANV";
             this.colMANV.MinWidth = 25;
             this.colMANV.Name = "colMANV";
+            this.colMANV.OptionsColumn.ReadOnly = true;
             this.colMANV.Visible = true;
             this.colMANV.VisibleIndex = 0;
-            this.colMANV.Width = 94;
+            this.colMANV.Width = 166;
             // 
             // colHO
             // 
             this.colHO.FieldName = "HO";
             this.colHO.MinWidth = 25;
             this.colHO.Name = "colHO";
+            this.colHO.OptionsColumn.ReadOnly = true;
             this.colHO.Visible = true;
             this.colHO.VisibleIndex = 1;
-            this.colHO.Width = 94;
+            this.colHO.Width = 166;
             // 
             // colTEN
             // 
             this.colTEN.FieldName = "TEN";
             this.colTEN.MinWidth = 25;
             this.colTEN.Name = "colTEN";
+            this.colTEN.OptionsColumn.ReadOnly = true;
             this.colTEN.Visible = true;
             this.colTEN.VisibleIndex = 2;
-            this.colTEN.Width = 94;
+            this.colTEN.Width = 166;
             // 
             // colSOCMND
             // 
             this.colSOCMND.FieldName = "SOCMND";
             this.colSOCMND.MinWidth = 25;
             this.colSOCMND.Name = "colSOCMND";
+            this.colSOCMND.OptionsColumn.ReadOnly = true;
             this.colSOCMND.Visible = true;
             this.colSOCMND.VisibleIndex = 3;
-            this.colSOCMND.Width = 94;
+            this.colSOCMND.Width = 166;
             // 
             // colDIACHI
             // 
             this.colDIACHI.FieldName = "DIACHI";
             this.colDIACHI.MinWidth = 25;
             this.colDIACHI.Name = "colDIACHI";
+            this.colDIACHI.OptionsColumn.ReadOnly = true;
             this.colDIACHI.Visible = true;
             this.colDIACHI.VisibleIndex = 4;
-            this.colDIACHI.Width = 94;
+            this.colDIACHI.Width = 166;
             // 
             // colNGAYSINH
             // 
             this.colNGAYSINH.FieldName = "NGAYSINH";
             this.colNGAYSINH.MinWidth = 25;
             this.colNGAYSINH.Name = "colNGAYSINH";
+            this.colNGAYSINH.OptionsColumn.ReadOnly = true;
             this.colNGAYSINH.Visible = true;
             this.colNGAYSINH.VisibleIndex = 5;
-            this.colNGAYSINH.Width = 94;
+            this.colNGAYSINH.Width = 166;
             // 
             // colLUONG
             // 
             this.colLUONG.FieldName = "LUONG";
             this.colLUONG.MinWidth = 25;
             this.colLUONG.Name = "colLUONG";
+            this.colLUONG.OptionsColumn.ReadOnly = true;
             this.colLUONG.Visible = true;
             this.colLUONG.VisibleIndex = 6;
-            this.colLUONG.Width = 94;
+            this.colLUONG.Width = 166;
             // 
             // colMACN
             // 
             this.colMACN.FieldName = "MACN";
             this.colMACN.MinWidth = 25;
             this.colMACN.Name = "colMACN";
+            this.colMACN.OptionsColumn.ReadOnly = true;
             this.colMACN.Visible = true;
             this.colMACN.VisibleIndex = 7;
-            this.colMACN.Width = 94;
+            this.colMACN.Width = 166;
             // 
             // colTrangThaiXoa
             // 
             this.colTrangThaiXoa.FieldName = "TrangThaiXoa";
             this.colTrangThaiXoa.MinWidth = 25;
             this.colTrangThaiXoa.Name = "colTrangThaiXoa";
+            this.colTrangThaiXoa.OptionsColumn.ReadOnly = true;
             this.colTrangThaiXoa.Visible = true;
             this.colTrangThaiXoa.VisibleIndex = 8;
-            this.colTrangThaiXoa.Width = 94;
+            this.colTrangThaiXoa.Width = 117;
             // 
             // panelNhapLieuNV
             // 
@@ -575,9 +625,9 @@ namespace QlvtPhanTan
             this.panelNhapLieuNV.Controls.Add(this.luongTextBox);
             this.panelNhapLieuNV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelNhapLieuNV.Enabled = false;
-            this.panelNhapLieuNV.Location = new System.Drawing.Point(0, 547);
+            this.panelNhapLieuNV.Location = new System.Drawing.Point(0, 663);
             this.panelNhapLieuNV.Name = "panelNhapLieuNV";
-            this.panelNhapLieuNV.Size = new System.Drawing.Size(1524, 143);
+            this.panelNhapLieuNV.Size = new System.Drawing.Size(1524, 27);
             this.panelNhapLieuNV.TabIndex = 10;
             // 
             // maNVTextBox
@@ -695,34 +745,6 @@ namespace QlvtPhanTan
             // 
             this.phieuXuatTableAdapter.ClearBeforeFill = true;
             // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.cmbCN);
-            this.panelControl1.Controls.Add(this.label1);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl1.Location = new System.Drawing.Point(2, 2);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1520, 50);
-            this.panelControl1.TabIndex = 5;
-            // 
-            // cmbCN
-            // 
-            this.cmbCN.FormattingEnabled = true;
-            this.cmbCN.Location = new System.Drawing.Point(110, 14);
-            this.cmbCN.Name = "cmbCN";
-            this.cmbCN.Size = new System.Drawing.Size(173, 24);
-            this.cmbCN.TabIndex = 1;
-            this.cmbCN.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Chi nhánh";
-            // 
             // FormNhanVien
             // 
             this.Appearance.Options.UseFont = true;
@@ -745,6 +767,9 @@ namespace QlvtPhanTan
             ((System.ComponentModel.ISupportInitialize)(this.panelControl)).EndInit();
             this.panelControl.ResumeLayout(false);
             this.panelControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsNhanVien)).EndInit();
@@ -761,9 +786,7 @@ namespace QlvtPhanTan
             ((System.ComponentModel.ISupportInitialize)(this.bdsPhieuXuat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDatHang)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPhieuNhap)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.unboundSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -827,5 +850,7 @@ namespace QlvtPhanTan
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private System.Windows.Forms.ComboBox cmbCN;
         private System.Windows.Forms.Label label1;
+        private DevExpress.XtraBars.BarButtonItem btnChuyenCN;
+        private DevExpress.Data.UnboundSource unboundSource1;
     }
 }

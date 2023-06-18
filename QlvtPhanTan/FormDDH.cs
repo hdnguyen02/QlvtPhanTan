@@ -184,20 +184,10 @@ namespace QlvtPhanTan
 
             
             try
-            {
-
-                // kiểm tra xem mã đơn đặt hàng có trùng không rồi làm tiếp 
+            { 
                 if (dangThemMoi)
                 {
-
-
                     dangThemMoi = false;
-
-                    // trước tiên cần kiểm tra xem ngày lập có đang trong tương lai. 
-
-                   
-                    
-
                     string strLenh = "declare @result int exec @result = spKiemTraMaDonDatHang '" + masoDDHTextEdit.Text + "' select @result";
              
                     Program.myReader = Program.ExecSqlDataReader(strLenh);
@@ -209,7 +199,6 @@ namespace QlvtPhanTan
                     {
                         throw new Exception("Mã đơn đặt hàng đã được sử dụng! Vui lòng chọn mã kho khác");
                     }
-
 
                 }
 

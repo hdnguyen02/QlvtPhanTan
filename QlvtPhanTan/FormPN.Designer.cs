@@ -203,7 +203,7 @@ namespace QlvtPhanTan
             // mAVTLabel
             // 
             mAVTLabel.AutoSize = true;
-            mAVTLabel.Location = new System.Drawing.Point(260, 111);
+            mAVTLabel.Location = new System.Drawing.Point(261, 111);
             mAVTLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             mAVTLabel.Name = "mAVTLabel";
             mAVTLabel.Size = new System.Drawing.Size(47, 17);
@@ -213,7 +213,7 @@ namespace QlvtPhanTan
             // sOLUONGLabel
             // 
             sOLUONGLabel.AutoSize = true;
-            sOLUONGLabel.Location = new System.Drawing.Point(228, 188);
+            sOLUONGLabel.Location = new System.Drawing.Point(229, 188);
             sOLUONGLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             sOLUONGLabel.Name = "sOLUONGLabel";
             sOLUONGLabel.Size = new System.Drawing.Size(75, 17);
@@ -223,7 +223,7 @@ namespace QlvtPhanTan
             // dONGIALabel
             // 
             dONGIALabel.AutoSize = true;
-            dONGIALabel.Location = new System.Drawing.Point(1, 188);
+            dONGIALabel.Location = new System.Drawing.Point(2, 188);
             dONGIALabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             dONGIALabel.Name = "dONGIALabel";
             dONGIALabel.Size = new System.Drawing.Size(63, 17);
@@ -233,7 +233,7 @@ namespace QlvtPhanTan
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(-2, 111);
+            label1.Location = new System.Drawing.Point(-1, 111);
             label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(56, 17);
@@ -243,7 +243,7 @@ namespace QlvtPhanTan
             // mAPNLabel1
             // 
             mAPNLabel1.AutoSize = true;
-            mAPNLabel1.Location = new System.Drawing.Point(8, 26);
+            mAPNLabel1.Location = new System.Drawing.Point(9, 26);
             mAPNLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             mAPNLabel1.Name = "mAPNLabel1";
             mAPNLabel1.Size = new System.Drawing.Size(48, 17);
@@ -453,6 +453,7 @@ namespace QlvtPhanTan
             this.panelControl.Name = "panelControl";
             this.panelControl.Size = new System.Drawing.Size(1277, 62);
             this.panelControl.TabIndex = 10;
+            this.panelControl.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl_Paint);
             // 
             // cmbChiNhanh
             // 
@@ -755,11 +756,11 @@ namespace QlvtPhanTan
             this.CTPNDataGridView.ContextMenuStrip = this.contextMenuStrip;
             this.CTPNDataGridView.DataSource = this.bdsCTPN;
             this.CTPNDataGridView.Dock = System.Windows.Forms.DockStyle.Right;
-            this.CTPNDataGridView.Location = new System.Drawing.Point(504, 388);
+            this.CTPNDataGridView.Location = new System.Drawing.Point(630, 388);
             this.CTPNDataGridView.Name = "CTPNDataGridView";
             this.CTPNDataGridView.RowHeadersWidth = 51;
             this.CTPNDataGridView.RowTemplate.Height = 24;
-            this.CTPNDataGridView.Size = new System.Drawing.Size(773, 388);
+            this.CTPNDataGridView.Size = new System.Drawing.Size(647, 388);
             this.CTPNDataGridView.TabIndex = 16;
             this.CTPNDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CTPNDataGridView_CellContentClick);
             // 
@@ -879,7 +880,7 @@ namespace QlvtPhanTan
             this.panelNhapLieuCTPN.Location = new System.Drawing.Point(628, 388);
             this.panelNhapLieuCTPN.Margin = new System.Windows.Forms.Padding(4);
             this.panelNhapLieuCTPN.Name = "panelNhapLieuCTPN";
-            this.panelNhapLieuCTPN.Size = new System.Drawing.Size(0, 388);
+            this.panelNhapLieuCTPN.Size = new System.Drawing.Size(2, 388);
             this.panelNhapLieuCTPN.TabIndex = 17;
             // 
             // maPN

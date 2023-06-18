@@ -60,6 +60,9 @@
     <Reference Include="DevExpress.XtraPrinting.v22.2, Version=22.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v22.2, Version=22.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v22.2.Extensions, Version=22.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v22.2, Version=22.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v22.2.Core, Version=22.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v22.2.Core.Desktop, Version=22.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v22.2, Version=22.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -81,6 +84,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FormChuyenCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChuyenCN.Designer.cs">
+      <DependentUpon>FormChuyenCN.cs</DependentUpon>
     </Compile>
     <Compile Include="FormDDH.cs">
       <SubType>Form</SubType>
@@ -123,6 +132,12 @@
     </Compile>
     <Compile Include="FormPX.Designer.cs">
       <DependentUpon>FormPX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportBCNV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportBCNV.Designer.cs">
+      <DependentUpon>FormReportBCNV.cs</DependentUpon>
     </Compile>
     <Compile Include="FormReportDDH.cs">
       <SubType>Form</SubType>
@@ -168,6 +183,9 @@
     <Compile Include="ReportVatTu.Designer.cs">
       <DependentUpon>ReportVatTu.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FormChuyenCN.resx">
+      <DependentUpon>FormChuyenCN.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDDH.resx">
       <DependentUpon>FormDDH.cs</DependentUpon>
     </EmbeddedResource>
@@ -188,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPX.resx">
       <DependentUpon>FormPX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportBCNV.resx">
+      <DependentUpon>FormReportBCNV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportDDH.resx">
       <DependentUpon>FormReportDDH.cs</DependentUpon>
